@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>GameCell.qml</file>
+        <file>Bar.qml</file>
+        <file>ViewHelper.js</file>
+    </qresource>
+</RCC>
