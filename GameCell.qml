@@ -9,7 +9,7 @@ Rectangle {
         anchors.fill: parent
 
         onClicked: {
-            if (root.state === "blocked") return;
+            if (root.state !== "clickable") return;
 
             root.activated(root);
         }

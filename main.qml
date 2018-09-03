@@ -11,13 +11,33 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-
-    Component.onCompleted: {
-        var rows = 3;
-        var cols = 4;
-
-        ViewHelper.spawnCells(root, rows, cols);
-        ViewHelper.createBars(root, rows, cols);
+    // mock menu bar
+    Rectangle {
+        id: menuBar
+        x: 0
+        y: 0
+        width: parent.width
+        height: 50
+        color: "grey"
     }
+
+    // container for the actual game board
+    Item {
+        id: cellHolder
+        anchors.top: menuBar.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        Component.onCompleted: {
+            var rows = 3;
+            var cols = 4;
+
+            ViewHelper.spawnCells(cellHolder, rows, cols);
+            ViewHelper.createBars(cellHolder, rows, cols);
+        }
+    }
+
+
 
 }
