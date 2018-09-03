@@ -95,6 +95,8 @@ int MainDiagonalIterator::computePrev() const
 
 bool MainDiagonalIterator::isValid(int value) const
 {
-    // TODO make this valid!!!
-    return value >= 0 && value < m_width * m_height;
+    int deltaX = (value / m_width) - (m_initValue / m_width);
+    int deltaY = (value % m_width) - (m_initValue % m_width);
+    return value >= 0 && value < m_width * m_height
+            && deltaX == deltaY;
 }
