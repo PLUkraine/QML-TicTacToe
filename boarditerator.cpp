@@ -1,4 +1,5 @@
 #include "boarditerator.h"
+#include "assert.h"
 
 BoardIterator::BoardIterator(int curPos, int boardWidth, int boardHeight)
 {
@@ -12,9 +13,16 @@ BoardIterator::~BoardIterator()
 {
 }
 
+int BoardIterator::getCurrent() const
+{
+    assert(this->isValid(m_pos));
+    return m_pos;
+}
+
 int BoardIterator::getNext()
 {
     m_pos = this->computeNext();
+    assert(this->isValid(m_pos));
     return m_pos;
 }
 
@@ -26,6 +34,7 @@ bool BoardIterator::hasNext() const
 int BoardIterator::getPrev()
 {
     m_pos = this->computePrev();
+    assert(this->isValid(m_pos));
     return m_pos;
 }
 

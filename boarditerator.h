@@ -13,6 +13,8 @@ public:
     BoardIterator(int curPos, int boardWidth, int boardHeight);
     virtual ~BoardIterator();
 
+    int getCurrent() const;
+
     int getNext();
     bool hasNext() const;
 

@@ -17,16 +17,15 @@ void GameController::sayHello()
 {
     qDebug() << "Hello, World!";
 
-    int cur = 2;
-    AlternativeDiagonalIterator it(cur, 3, 5);
+    HorizontalIterator it(0, 3, 5);
     while (it.hasNext()) {
-        int nxt = it.getNext();
-        qDebug() << cur << "->" << nxt;
-        cur = nxt;
+        int cur = it.getCurrent();
+        int next = it.getNext();
+        qDebug() << cur << "->" << next;
     }
     while (it.hasPrev()) {
-        int nxt = it.getPrev();
-        qDebug() << cur << "->" << nxt;
-        cur = nxt;
+        int cur = it.getCurrent();
+        int next = it.getPrev();
+        qDebug() << cur << "->" << next;
     }
 }
