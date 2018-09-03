@@ -52,4 +52,13 @@ private:
     virtual bool isValid(int value) const override;
 };
 
+class AlternativeDiagonalIterator : public BoardIterator {
+public:
+    AlternativeDiagonalIterator(int curPos, int boardWidth, int boardHeight);
+private:
+    virtual int computeNext() const override;
+    virtual int computePrev() const override;
+    virtual bool isValid(int value) const override;
+};
+
 #endif // IBOARDITERATOR_H

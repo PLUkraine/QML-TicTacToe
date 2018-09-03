@@ -100,3 +100,27 @@ bool MainDiagonalIterator::isValid(int value) const
     return value >= 0 && value < m_width * m_height
             && deltaX == deltaY;
 }
+
+AlternativeDiagonalIterator::AlternativeDiagonalIterator(int curPos, int boardWidth, int boardHeight)
+    : BoardIterator(curPos, boardWidth, boardHeight)
+{
+
+}
+
+int AlternativeDiagonalIterator::computeNext() const
+{
+    return m_pos + m_width - 1;
+}
+
+int AlternativeDiagonalIterator::computePrev() const
+{
+    return m_pos - m_width + 1;
+}
+
+bool AlternativeDiagonalIterator::isValid(int value) const
+{
+    int deltaX = (value / m_width) - (m_initValue / m_width);
+    int deltaY = (m_initValue % m_width) - (value % m_width);
+    return value >= 0 && value < m_width * m_height
+            && deltaX == deltaY;
+}

@@ -17,8 +17,8 @@ void GameController::sayHello()
 {
     qDebug() << "Hello, World!";
 
-    int cur = 4;
-    MainDiagonalIterator it(cur, 4, 5);
+    int cur = 2;
+    AlternativeDiagonalIterator it(cur, 3, 5);
     while (it.hasNext()) {
         int nxt = it.getNext();
         qDebug() << cur << "->" << nxt;
