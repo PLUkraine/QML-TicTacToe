@@ -16,6 +16,8 @@ set(project_sources
    gamecontroller.h
    gameboard.cpp
    gameboard.h
+   boarditerator.h
+   boarditerator.cpp
 )
 
 add_executable(${PROJECT_NAME} "main.cpp" "qml.qrc" ${project_sources})
