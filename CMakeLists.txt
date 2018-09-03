@@ -10,6 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
-add_executable(${PROJECT_NAME} "main.cpp" "qml.qrc")
+set(project_sources
+   main.cpp
+   gamecontroller.cpp
+   gamecontroller.h
+)
+
+add_executable(${PROJECT_NAME} "main.cpp" "qml.qrc" ${project_sources})
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Quick)

@@ -1,6 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
 
+import TicTacToe 1.0
+
 import "ViewHelper.js" as ViewHelper
 
 Window {
@@ -35,6 +37,14 @@ Window {
 
             ViewHelper.spawnCells(cellHolder, rows, cols);
             ViewHelper.createBars(cellHolder, rows, cols);
+        }
+    }
+
+    GameController {
+        id: gameController
+
+        Component.onCompleted: {
+            gameController.sayHello();
         }
     }
 
