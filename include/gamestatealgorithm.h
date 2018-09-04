@@ -2,22 +2,19 @@
 #define GAMESTATEALGORITHM_H
 
 #include "gameboard.h"
+#include "gamestateenum.h"
 #include "boarditerator.h"
-
-enum class GameState: char {
-    NOTHING, X_WIN, O_WIN, DRAW
-};
 
 class GameStateAlgorithm
 {
 public:
     GameStateAlgorithm();
 
-    GameState getState(GameBoard *board, int changedIndex, int cellsToWin);
+    GameStateClass::EnGameState getState(GameBoard *board, int changedIndex, int cellsToWin);
 
 private:
     bool checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin);
-    GameState determineWinner(GameBoard *board, int pos);
+    GameStateClass::EnGameState determineWinner(GameBoard *board, int pos);
 };
 
 #endif // GAMESTATEALGORITHM_H

@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include "gamecontroller.h"
+#include "gamestateenum.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,8 @@ int main(int argc, char *argv[])
 
     // register QML plugins
     GameController::registerQmlType();
+    GameStateClass::registerQmlType();
+
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

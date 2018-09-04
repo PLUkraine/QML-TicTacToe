@@ -19,11 +19,13 @@ set(game_logic_sources
     include/gameboard.h
     include/boarditerator.h
     include/gamestatealgorithm.h
+    include/gamestateenum.h
 
     src/gamecontroller.cpp
     src/gameboard.cpp
     src/boarditerator.cpp
     src/gamestatealgorithm.cpp
+    src/gamestateenum.cpp
 )
 ADD_LIBRARY(GameLogicLib STATIC ${game_logic_sources})
 target_link_libraries(GameLogicLib PRIVATE Qt5::Core Qt5::Quick)
