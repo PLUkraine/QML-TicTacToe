@@ -1,6 +1,6 @@
 .pragma library
 
-function spawnCells(root, rows, cols) {
+function spawnCells(root, controller, rows, cols) {
     var cellComponent = Qt.createComponent("GameCell.qml");
 
     // create cells
@@ -21,7 +21,10 @@ function spawnCells(root, rows, cols) {
                     "state": "clickable"
                 });
                 cell.activated.connect(function(sender) {
-                    sender.state = "blocked";
+                    // TODO disable all cells when game is over!
+
+                    sender.state = controller.isXTurn ? "xState" : "oState"
+                    controller.makeMove(ii, jj);
                 })
             })();
         }
