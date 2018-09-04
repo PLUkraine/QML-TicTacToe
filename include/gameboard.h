@@ -19,6 +19,8 @@ public:
 
     void newGame(int rows, int cols);
 
+    bool hasEmpty() const;
+
     int getWidth() const;
     int getHeight() const;
 

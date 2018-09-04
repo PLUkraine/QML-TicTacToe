@@ -17,6 +17,7 @@ public:
 
 private:
     bool checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin);
+    GameState determineWinner(GameBoard *board, int pos);
 };
 
 #endif // GAMESTATEALGORITHM_H

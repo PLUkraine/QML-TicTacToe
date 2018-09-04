@@ -1,4 +1,5 @@
 #include "gameboard.h"
+#include <algorithm>
 
 GameBoard::GameBoard()
 {
@@ -11,6 +12,13 @@ void GameBoard::newGame(int rows, int cols)
     m_width = cols;
 
     m_board.assign(static_cast<std::size_t>(rows*cols), BoardCell::Empty);
+}
+
+bool GameBoard::hasEmpty() const
+{
+    return std::any_of(m_board.begin(), m_board.end(), [](BoardCell element) {
+        return element == BoardCell::Empty;
+    });
 }
 
 int GameBoard::getWidth() const
