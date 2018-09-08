@@ -4,5 +4,6 @@
         <file>GameCell.qml</file>
         <file>Bar.qml</file>
         <file>ViewHelper.js</file>
+        <file>CurrentPlayerIndicator.qml</file>
     </qresource>
 </RCC>

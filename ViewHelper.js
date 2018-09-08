@@ -67,3 +67,19 @@ function createBars(root, rows, cols) {
         })();
     }
 }
+
+function gameStateToString(gameState, GameState) {
+    switch (gameState) {
+    case GameState.STATE_DRAW:
+        return "Draw";
+    case GameState.STATE_X_WIN:
+        return "X is winner";
+    case GameState.STATE_O_WIN:
+        return "O is winner";
+    default:
+        console.error("Wrong state: " + gameState);
+        console.assert(false);
+        break;
+    }
+    return "ERROR"
+}

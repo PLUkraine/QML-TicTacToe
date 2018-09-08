@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.3
 
 import TicTacToe 1.0
 
@@ -21,6 +22,14 @@ Window {
         width: parent.width
         height: 50
         color: "grey"
+
+        CurrentPlayerIndicator {
+            id: currentPlayerView
+
+            anchors.right: parent.right
+            width: 100
+            height: parent.height
+        }
     }
 
     // container for the actual game board
@@ -36,14 +45,22 @@ Window {
         id: gameController
 
         onGameIsOver: {
-            console.log("Game is over");
-            cellHolder.enabled = false
+            winDialog.text = "Game is over.\n" + ViewHelper.gameStateToString(result, GameState);
+            winDialog.visible = true;
+            cellHolder.enabled = false;
+        }
+        onPlayerChanged: {
+            currentPlayerView.changePlayer(isXPlayer)
         }
     }
+    MessageDialog {
+        id: winDialog
 
+        modality: "WindowModal"
+    }
 
     Component.onCompleted: {
-        var rows = 5;
+        var rows = 3;
         var cols = 3;
 
         ViewHelper.spawnCells(cellHolder, gameController, rows, cols);

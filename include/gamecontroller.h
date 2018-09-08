@@ -23,8 +23,8 @@ public:
     Q_INVOKABLE void makeMove(int row, int col);
 
 signals:
-    void playerChanged();
-    void gameIsOver(GameStateClass::EnGameState result);
+    void playerChanged(bool isXPlayer);
+    void gameIsOver(int result);
 };
 
 #endif // GAMECONTROLLER_H
