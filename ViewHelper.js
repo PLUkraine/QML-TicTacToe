@@ -1,6 +1,6 @@
-.pragma library
+.import TicTacToe 1.0 as GameLogic
 
-function spawnCells(root, controller, rows, cols, CellState) {
+function spawnCells(root, controller, rows, cols) {
     var cellComponent = Qt.createComponent("GameCell.qml");
 
     // create cells
@@ -27,13 +27,13 @@ function spawnCells(root, controller, rows, cols, CellState) {
                     if (ii !== row || jj !== col) return;
 
                     switch (newState) {
-                    case CellState.EMPTY:
+                    case GameLogic.CellState.EMPTY:
                         cell.state = "clickable";
                         break;
-                    case CellState.X:
+                    case GameLogic.CellState.X:
                         cell.state = "xState";
                         break;
-                    case CellState.O:
+                    case GameLogic.CellState.O:
                         cell.state = "oState";
                         break;
                     default:
@@ -86,13 +86,13 @@ function createBars(root, rows, cols) {
     }
 }
 
-function gameStateToString(gameState, GameState) {
+function gameStateToString(gameState) {
     switch (gameState) {
-    case GameState.STATE_DRAW:
+    case GameLogic.GameState.STATE_DRAW:
         return "Draw";
-    case GameState.STATE_X_WIN:
+    case GameLogic.GameState.STATE_X_WIN:
         return "X is winner";
-    case GameState.STATE_O_WIN:
+    case GameLogic.GameState.STATE_O_WIN:
         return "O is winner";
     default:
         console.error("Wrong state: " + gameState);

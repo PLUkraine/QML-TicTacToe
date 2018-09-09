@@ -45,7 +45,7 @@ Window {
         id: gameController
 
         onGameIsOver: {
-            winDialog.text = "Game is over.\n" + ViewHelper.gameStateToString(result, GameState);
+            winDialog.text = "Game is over.\n" + ViewHelper.gameStateToString(result);
             winDialog.visible = true;
             cellHolder.enabled = false;
         }
@@ -63,7 +63,7 @@ Window {
         var rows = 3;
         var cols = 3;
 
-        ViewHelper.spawnCells(cellHolder, gameController, rows, cols, CellState);
+        ViewHelper.spawnCells(cellHolder, gameController, rows, cols);
         ViewHelper.createBars(cellHolder, rows, cols);
         gameController.newGame(rows, cols, 3);
     }
