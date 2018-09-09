@@ -25,6 +25,7 @@ public:
 signals:
     void playerChanged(bool isXPlayer);
     void gameIsOver(int result);
+    void cellChanged(int row, int col, int newState);
 };
 
 #endif // GAMECONTROLLER_H

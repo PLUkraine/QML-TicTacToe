@@ -18,6 +18,7 @@ public:
     void startNewGame(int rows, int cols, int cellsToWin);
     GameStateClass::EnGameState makeMove(int row, int col);
     bool isXTurn() const;
+    CellStateEnum::EnCellState getCell(int row, int col);
 };
 
 #endif // GAMEMODEL_H

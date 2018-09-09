@@ -1,6 +1,6 @@
 .pragma library
 
-function spawnCells(root, controller, rows, cols) {
+function spawnCells(root, controller, rows, cols, CellState) {
     var cellComponent = Qt.createComponent("GameCell.qml");
 
     // create cells
@@ -21,9 +21,27 @@ function spawnCells(root, controller, rows, cols) {
                                                           "state": "clickable"
                                                       });
                 cell.activated.connect(function(sender) {
-                    sender.state = controller.isXTurn ? "xState" : "oState"
                     controller.makeMove(ii, jj);
-                })
+                });
+                controller.cellChanged.connect(function(row, col, newState) {
+                    if (ii !== row || jj !== col) return;
+
+                    switch (newState) {
+                    case CellState.EMPTY:
+                        cell.state = "clickable";
+                        break;
+                    case CellState.X:
+                        cell.state = "xState";
+                        break;
+                    case CellState.O:
+                        cell.state = "oState";
+                        break;
+                    default:
+                        console.error("Wrong state: " + gameState);
+                        console.assert(false);
+                        break;
+                    }
+                });
             })();
         }
     }

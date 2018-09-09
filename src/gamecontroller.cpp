@@ -25,6 +25,8 @@ void GameController::newGame(int rows, int cols, int cellsToWin)
 void GameController::makeMove(int row, int col)
 {
     auto newState = m_model.makeMove(row, col);
+    emit cellChanged(row, col, m_model.getCell(row, col));
+
     if (newState != GameStateClass::STATE_NOTHING) {
         emit gameIsOver(static_cast<int>(newState));
     }

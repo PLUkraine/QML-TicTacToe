@@ -37,3 +37,8 @@ bool GameModel::isXTurn() const
     assert(m_isActive);
     return m_playerXTurn;
 }
+
+CellStateEnum::EnCellState GameModel::getCell(int row, int col)
+{
+    return m_board.getCell(m_board.getIndex(row, col));
+}
