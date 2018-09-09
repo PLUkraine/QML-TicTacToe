@@ -21,5 +21,11 @@ Item {
         width: parent.height
         height: parent.height
         color: "Red"
+
+        Behavior on color {
+            ColorAnimation { target: rectangle; duration: 300 }
+        }
     }
+
+
 }

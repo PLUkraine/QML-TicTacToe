@@ -4,6 +4,7 @@ Rectangle {
     id: root
     signal activated(variant sender)
 
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -13,6 +14,9 @@ Rectangle {
 
             root.activated(root);
         }
+    }
+    Behavior on color {
+        ColorAnimation { target: root; duration: 300 }
     }
 
     states: [
