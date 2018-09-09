@@ -2,17 +2,14 @@
 #define GAMEBOARD_H
 
 #include <vector>
-
-enum class BoardCell: char {
-    Empty, X, O
-};
+#include "cellstateenum.h"
 
 class GameBoard
 {
 private:
     int m_width;
     int m_height;
-    std::vector<BoardCell> m_board;
+    std::vector<CellStateEnum::EnCellState> m_board;
 
 public:
     GameBoard();
@@ -24,8 +21,8 @@ public:
     int getWidth() const;
     int getHeight() const;
 
-    BoardCell getCell(int index) const;
-    void setCell(int index, BoardCell value);
+    CellStateEnum::EnCellState getCell(int index) const;
+    void setCell(int index, CellStateEnum::EnCellState value);
 
     int getIndex(int row, int col) const;
 };

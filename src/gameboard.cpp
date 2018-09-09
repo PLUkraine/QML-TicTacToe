@@ -11,13 +11,13 @@ void GameBoard::newGame(int rows, int cols)
     m_height = rows;
     m_width = cols;
 
-    m_board.assign(static_cast<std::size_t>(rows*cols), BoardCell::Empty);
+    m_board.assign(static_cast<std::size_t>(rows*cols), CellStateEnum::EnCellState::EMPTY);
 }
 
 bool GameBoard::hasEmpty() const
 {
-    return std::any_of(m_board.begin(), m_board.end(), [](BoardCell element) {
-        return element == BoardCell::Empty;
+    return std::any_of(m_board.begin(), m_board.end(), [](CellStateEnum::EnCellState element) {
+        return element == CellStateEnum::EnCellState::EMPTY;
     });
 }
 
@@ -31,12 +31,12 @@ int GameBoard::getHeight() const
     return m_height;
 }
 
-BoardCell GameBoard::getCell(int index) const
+CellStateEnum::EnCellState GameBoard::getCell(int index) const
 {
     return m_board[static_cast<std::size_t>(index)];
 }
 
-void GameBoard::setCell(int index, BoardCell value)
+void GameBoard::setCell(int index, CellStateEnum::EnCellState value)
 {
     m_board[static_cast<std::size_t>(index)] = value;
 }

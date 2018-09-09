@@ -3,6 +3,7 @@
 
 #include "gamecontroller.h"
 #include "gamestateenum.h"
+#include "cellstateenum.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
     // register QML plugins
     GameController::registerQmlType();
     GameStateClass::registerQmlType();
+    CellStateEnum::registerQmlType();
 
 
     QQmlApplicationEngine engine;

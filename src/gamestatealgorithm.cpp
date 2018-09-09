@@ -29,7 +29,7 @@ GameStateClass::EnGameState GameStateAlgorithm::getState(GameBoard *board, int c
 
 bool GameStateAlgorithm::checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin)
 {
-    BoardCell target = board->getCell(iterator->getCurrent());
+    CellStateEnum::EnCellState target = board->getCell(iterator->getCurrent());
 
     // move iterator to the left (until item under
     // the iterator is same)
@@ -53,7 +53,7 @@ bool GameStateAlgorithm::checkPath(GameBoard *board, BoardIterator *iterator, in
 
 GameStateClass::EnGameState GameStateAlgorithm::determineWinner(GameBoard *board, int pos)
 {
-    return board->getCell(pos) == BoardCell::X
+    return board->getCell(pos) == CellStateEnum::EnCellState::X
             ? GameStateClass::STATE_X_WIN
             : GameStateClass::STATE_O_WIN;
 }

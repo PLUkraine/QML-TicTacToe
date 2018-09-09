@@ -19,7 +19,10 @@ GameStateClass::EnGameState GameModel::makeMove(int row, int col)
 {
     assert(m_isActive);
 
-    m_board.setCell(m_board.getIndex(row, col), m_playerXTurn ? BoardCell::X : BoardCell::O);
+    m_board.setCell(m_board.getIndex(row, col),
+                    m_playerXTurn
+                        ? CellStateEnum::EnCellState::X
+                        : CellStateEnum::EnCellState::O);
     m_playerXTurn = !m_playerXTurn;
 
     auto answer = m_stateAlgo.getState(&m_board, m_board.getIndex(row, col), m_cellsToWin);
