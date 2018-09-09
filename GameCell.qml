@@ -2,8 +2,13 @@ import QtQuick 2.0
 
 Rectangle {
     id: root
+    property real disabledDim: 1.0
+
     signal activated(variant sender)
 
+    onEnabledChanged: {
+        disabledDim = !enabled ? 1.5 : 1.0
+    }
 
     MouseArea {
         id: mouseArea
@@ -16,7 +21,7 @@ Rectangle {
         }
     }
     Behavior on color {
-        ColorAnimation { target: root; duration: 300 }
+        ColorAnimation { target: root; duration: 150 }
     }
 
     states: [
@@ -24,28 +29,21 @@ Rectangle {
             name: "clickable"
             PropertyChanges {
                 target: root
-                color: "white"
-            }
-        },
-        State {
-            name: "blocked"
-            PropertyChanges {
-                target: root
-                color: "lightgray"
+                color: Qt.darker("white", disabledDim)
             }
         },
         State {
             name: "xState"
             PropertyChanges {
                 target: root
-                color: "red"
+                color: Qt.darker("red", disabledDim)
             }
         },
         State {
             name: "oState"
             PropertyChanges {
                 target: root
-                color: "blue"
+                color: Qt.darker("blue", disabledDim)
             }
         }
     ]

@@ -20,7 +20,7 @@ Item {
         anchors.right: parent.right
         width: parent.height
         height: parent.height
-        color: "Red"
+        color: xColor
 
         Behavior on color {
             ColorAnimation { target: rectangle; duration: 300 }
