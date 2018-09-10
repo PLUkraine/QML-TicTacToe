@@ -1,10 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.3
 
 import TicTacToe 1.0
-
-import "ViewHelper.js" as ViewHelper
 
 Window {
     id: root
@@ -33,38 +30,16 @@ Window {
     }
 
     // container for the actual game board
-    Item {
-        id: cellHolder
+    GameBoard {
+        id: gameBoard
+
         anchors.top: menuBar.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-    }
 
-    GameController {
-        id: gameController
-
-        onGameIsOver: {
-            winDialog.text = "Game is over.\n" + ViewHelper.gameStateToString(result);
-            winDialog.visible = true;
-            cellHolder.enabled = false;
-        }
         onPlayerChanged: {
-            currentPlayerView.changePlayer(isXPlayer)
+            currentPlayerView.changePlayer(isXTurn)
         }
-    }
-    MessageDialog {
-        id: winDialog
-
-        modality: "WindowModal"
-    }
-
-    Component.onCompleted: {
-        var rows = 3;
-        var cols = 3;
-
-        ViewHelper.spawnCells(cellHolder, gameController, rows, cols);
-        ViewHelper.createBars(cellHolder, rows, cols);
-        gameController.newGame(rows, cols, 3);
     }
 }

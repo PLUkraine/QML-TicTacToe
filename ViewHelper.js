@@ -49,7 +49,7 @@ function spawnCells(root, controller, rows, cols) {
 
 function createBars(root, rows, cols) {
     // create intercell bars
-    var barWidth = 3;
+    var barWidth = 1;
     var barComponent = Qt.createComponent("Bar.qml");
 
     // horizontal

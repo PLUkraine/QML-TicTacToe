@@ -11,7 +11,7 @@ Item {
 
     Text {
         anchors.left: parent.left
-        y: parent.height/2 - height/2
+        anchors.verticalCenter: parent.verticalCenter
         text: qsTr("Turn")
     }
     Rectangle {
