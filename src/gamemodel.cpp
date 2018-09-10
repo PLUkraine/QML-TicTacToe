@@ -15,17 +15,17 @@ void GameModel::startNewGame(int rows, int cols, int cellsToWin)
     m_playerXTurn = true;
 }
 
-GameStateClass::EnGameState GameModel::makeMove(int row, int col)
+GameStateClass::EnGameState GameModel::makeMove(int index)
 {
     assert(m_isActive);
 
-    m_board.setCell(m_board.getIndex(row, col),
+    m_board.setCell(index,
                     m_playerXTurn
                         ? CellStateEnum::EnCellState::X
                         : CellStateEnum::EnCellState::O);
     m_playerXTurn = !m_playerXTurn;
 
-    auto answer = m_stateAlgo.getState(&m_board, m_board.getIndex(row, col), m_cellsToWin);
+    auto answer = m_stateAlgo.getState(&m_board, index, m_cellsToWin);
     if (answer != GameStateClass::STATE_NOTHING) {
         m_isActive = false;
     }
@@ -38,7 +38,12 @@ bool GameModel::isXTurn() const
     return m_playerXTurn;
 }
 
-CellStateEnum::EnCellState GameModel::getCell(int row, int col)
+CellStateEnum::EnCellState GameModel::getCell(int index) const
 {
-    return m_board.getCell(m_board.getIndex(row, col));
+    return m_board.getCell(index);
+}
+
+int GameModel::getIndex(int row, int col) const
+{
+    return m_board.getIndex(row, col);
 }

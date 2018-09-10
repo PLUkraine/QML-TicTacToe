@@ -16,9 +16,10 @@ public:
     GameModel();
 
     void startNewGame(int rows, int cols, int cellsToWin);
-    GameStateClass::EnGameState makeMove(int row, int col);
+    GameStateClass::EnGameState makeMove(int index);
+    CellStateEnum::EnCellState getCell(int index) const;
+    int getIndex(int row, int col) const;
     bool isXTurn() const;
-    CellStateEnum::EnCellState getCell(int row, int col);
 };
 
 #endif // GAMEMODEL_H

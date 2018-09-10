@@ -20,12 +20,13 @@ public:
 
     // TODO delete
     Q_INVOKABLE void newGame(int rows, int cols, int cellsToWin);
-    Q_INVOKABLE void makeMove(int row, int col);
+    Q_INVOKABLE void makeMove(int index);
+    Q_INVOKABLE int getIndex(int row, int col) const;
 
 signals:
     void playerChanged(bool isXPlayer);
     void gameIsOver(int result);
-    void cellChanged(int row, int col, int newState);
+    void cellChanged(int index, int newState);
 };
 
 #endif // GAMECONTROLLER_H

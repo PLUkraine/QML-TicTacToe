@@ -21,10 +21,10 @@ function spawnCells(root, controller, rows, cols) {
                                                           "state": "clickable"
                                                       });
                 cell.activated.connect(function(sender) {
-                    controller.makeMove(ii, jj);
+                    controller.makeMove(controller.getIndex(ii, jj));
                 });
-                controller.cellChanged.connect(function(row, col, newState) {
-                    if (ii !== row || jj !== col) return;
+                controller.cellChanged.connect(function(index, newState) {
+                    if (controller.getIndex(ii, jj) !== index) return;
 
                     switch (newState) {
                     case GameLogic.CellState.EMPTY:
