@@ -13,6 +13,5 @@ Rectangle {
     height: barHeight
     x: barX
     y: barY
-
     color: "black"
 }

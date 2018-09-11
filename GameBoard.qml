@@ -15,6 +15,9 @@ Item {
         timer.triggered.connect(cb);
         timer.start();
     }
+    function randomIntBetween(low, high) {
+        return Math.floor(low + Math.random() * (high - low));
+    }
 
     GameController {
         id: gameController
@@ -25,7 +28,7 @@ Item {
 
             // restart game
             root.delay(1000, function() {
-                ViewHelper.newGame(root, gameController, 3, 3, 3);
+                ViewHelper.newGame(root, gameController, randomIntBetween(3, 5), randomIntBetween(3, 6), 3);
                 root.enabled = true;
             });
         }
