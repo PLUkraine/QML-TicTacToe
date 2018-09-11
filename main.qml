@@ -1,9 +1,9 @@
 import QtQuick 2.9
-import QtQuick.Window 2.2
+import QtQuick.Controls 1.4
 
 import TicTacToe 1.0
 
-Window {
+ApplicationWindow {
     id: root
 
     visible: true
@@ -11,9 +11,35 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
+    menuBar: MenuBar {
+        Menu {
+            title: "&Game"
+            MenuItem { action: newGameAction }
+            MenuItem { action: quitApplicationAction }
+        }
+    }
+
+    Action {
+        id: newGameAction
+        text: "&New Game..."
+        shortcut: StandardKey.New
+        onTriggered: {
+            gameBoard.startNewGame();
+        }
+    }
+    Action {
+        id: quitApplicationAction
+        text: "&Exit"
+        shortcut: StandardKey.Redo
+        onTriggered: {
+            Qt.quit();
+        }
+    }
+
+
     // mock menu bar
     Rectangle {
-        id: menuBar
+        id: mockedMenuBar
         x: 0
         y: 0
         width: parent.width
@@ -33,7 +59,7 @@ Window {
     GameBoard {
         id: gameBoard
 
-        anchors.top: menuBar.bottom
+        anchors.top: mockedMenuBar.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom

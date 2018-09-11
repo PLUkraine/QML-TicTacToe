@@ -9,14 +9,13 @@ Item {
     id: root
     signal playerChanged(bool isXTurn)
 
-    function delay(delayTime, cb) {
-        timer.interval = delayTime;
-        timer.repeat = false;
-        timer.triggered.connect(cb);
-        timer.start();
-    }
+
     function randomIntBetween(low, high) {
         return Math.floor(low + Math.random() * (high - low));
+    }
+    function startNewGame() {
+        ViewHelper.newGame(root, gameController, randomIntBetween(3, 5), randomIntBetween(3, 6), 3);
+        root.enabled = true;
     }
 
     GameController {
@@ -25,19 +24,8 @@ Item {
         onPlayerChanged: root.playerChanged(isXPlayer)
         onGameIsOver: {
             root.enabled = false;
-
-            // restart game
-            root.delay(1000, function() {
-                ViewHelper.newGame(root, gameController, randomIntBetween(3, 5), randomIntBetween(3, 6), 3);
-                root.enabled = true;
-            });
         }
     }
-    Timer {
-        id: timer
-    }
-
-
 
     Component.onCompleted: {
         var rows = 5;
