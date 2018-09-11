@@ -3,6 +3,8 @@ import QtQuick 2.0
 Rectangle {
     id: root
     property real disabledDim: 1.0
+    property int row: -1
+    property int col: -1
 
     signal activated(variant sender)
 

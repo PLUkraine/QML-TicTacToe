@@ -9,22 +9,39 @@ Item {
     id: root
     signal playerChanged(bool isXTurn)
 
+    function delay(delayTime, cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
+    }
+
     GameController {
         id: gameController
 
         onPlayerChanged: root.playerChanged(isXPlayer)
         onGameIsOver: {
             root.enabled = false;
+
+            // restart game
+            root.delay(1000, function() {
+                ViewHelper.newGame(root, gameController, 3, 3, 3);
+                root.enabled = true;
+            });
         }
     }
+    Timer {
+        id: timer
+    }
+
+
 
     Component.onCompleted: {
         var rows = 5;
         var cols = 5;
         var cellsToWin = 4;
 
-        ViewHelper.spawnCells(root, gameController, rows, cols);
-        ViewHelper.createBars(root, rows, cols);
-        gameController.newGame(rows, cols, cellsToWin);
+        ViewHelper.initialize(root, gameController, 40);
+        ViewHelper.newGame(root, gameController, rows, cols, cellsToWin);
     }
 }
