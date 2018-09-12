@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 1.4
 
+
 import TicTacToe 1.0
 
 ApplicationWindow {
@@ -18,6 +19,24 @@ ApplicationWindow {
             MenuItem { action: quitApplicationAction }
         }
     }
+    statusBar: AppStatusBar {
+        id: appStatusBar
+    }
+
+    // container for the actual game board
+    GameBoard {
+        id: gameBoard
+
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        onPlayerChanged: {
+            appStatusBar.currentPlayerView.changePlayer(isXTurn)
+        }
+    }
+
 
     Action {
         id: newGameAction
@@ -25,13 +44,6 @@ ApplicationWindow {
         shortcut: StandardKey.New
         onTriggered: {
             newGameDialog.visible = true;
-        }
-    }
-    NewGameDialog {
-        id: newGameDialog
-
-        onStartNewGame: {
-            gameBoard.startNewGame(rows, cols, cellsToWin);
         }
     }
     Action {
@@ -42,37 +54,11 @@ ApplicationWindow {
             Qt.quit();
         }
     }
+    NewGameDialog {
+        id: newGameDialog
 
-
-    // mock menu bar
-    Rectangle {
-        id: mockedMenuBar
-        x: 0
-        y: 0
-        width: parent.width
-        height: 50
-        color: "grey"
-
-        CurrentPlayerIndicator {
-            id: currentPlayerView
-
-            anchors.right: parent.right
-            width: 100
-            height: parent.height
-        }
-    }
-
-    // container for the actual game board
-    GameBoard {
-        id: gameBoard
-
-        anchors.top: mockedMenuBar.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        onPlayerChanged: {
-            currentPlayerView.changePlayer(isXTurn)
+        onStartNewGame: {
+            gameBoard.startNewGame(rows, cols, cellsToWin);
         }
     }
 }

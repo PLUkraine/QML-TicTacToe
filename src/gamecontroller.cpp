@@ -20,6 +20,7 @@ bool GameController::isXTurn() const
 void GameController::newGame(int rows, int cols, int cellsToWin)
 {
     m_model.startNewGame(rows, cols, cellsToWin);
+    playerChanged(m_model.isXTurn());
 }
 
 void GameController::makeMove(int index)

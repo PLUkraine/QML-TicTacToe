@@ -7,5 +7,6 @@
         <file>CurrentPlayerIndicator.qml</file>
         <file>GameBoard.qml</file>
         <file>NewGameDialog.qml</file>
+        <file>AppStatusBar.qml</file>
     </qresource>
 </RCC>

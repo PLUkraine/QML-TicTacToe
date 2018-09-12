@@ -1,31 +1,18 @@
 import QtQuick 2.0
 
-Item {
+Rectangle {
     id: root
+
     property color xColor: "red"
     property color oColor: "blue"
 
     function changePlayer(isXPlayer) {
-        rectangle.color = isXPlayer ? root.xColor : root.oColor
+        root.color = isXPlayer ? root.xColor : root.oColor
     }
 
-    Text {
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        text: qsTr("Turn")
+    color: xColor
+
+    Behavior on color {
+        ColorAnimation { target: root; duration: 300 }
     }
-    Rectangle {
-        id: rectangle
-
-        anchors.right: parent.right
-        width: parent.height
-        height: parent.height
-        color: xColor
-
-        Behavior on color {
-            ColorAnimation { target: rectangle; duration: 300 }
-        }
-    }
-
-
 }

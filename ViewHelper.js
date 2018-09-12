@@ -22,6 +22,8 @@ function newGame(root, controller, rows, cols, cellsToWin) {
 
 function gameStateToString(gameState) {
     switch (gameState) {
+    case GameLogic.GameState.STATE_NOTHING:
+        return "Running";
     case GameLogic.GameState.STATE_DRAW:
         return "Draw";
     case GameLogic.GameState.STATE_X_WIN:
