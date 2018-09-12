@@ -24,7 +24,14 @@ ApplicationWindow {
         text: "&New Game..."
         shortcut: StandardKey.New
         onTriggered: {
-            gameBoard.startNewGame();
+            newGameDialog.visible = true;
+        }
+    }
+    NewGameDialog {
+        id: newGameDialog
+
+        onStartNewGame: {
+            gameBoard.startNewGame(rows, cols, cellsToWin);
         }
     }
     Action {

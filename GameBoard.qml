@@ -13,8 +13,8 @@ Item {
     function randomIntBetween(low, high) {
         return Math.floor(low + Math.random() * (high - low));
     }
-    function startNewGame() {
-        ViewHelper.newGame(root, gameController, randomIntBetween(3, 5), randomIntBetween(3, 6), 3);
+    function startNewGame(rows, cols, cellsToWin) {
+        ViewHelper.newGame(root, gameController, rows, cols, cellsToWin);
         root.enabled = true;
     }
 

@@ -22,6 +22,7 @@ set(game_logic_sources
     include/gamestateenum.h
     include/gamemodel.h
     include/cellstateenum.h
+    include/basegameopponent.h
 
     src/gamecontroller.cpp
     src/gameboard.cpp
@@ -30,7 +31,7 @@ set(game_logic_sources
     src/gamestateenum.cpp
     src/gamemodel.cpp
     src/cellstateenum.cpp
-
+    src/basegameopponent.cpp
 )
 ADD_LIBRARY(GameLogicLib STATIC ${game_logic_sources})
 target_link_libraries(GameLogicLib PRIVATE Qt5::Core Qt5::Quick)

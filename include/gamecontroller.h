@@ -27,6 +27,9 @@ signals:
     void playerChanged(bool isXPlayer);
     void gameIsOver(int result);
     void cellChanged(int index, int newState);
+
+private:
+    void postMoveChecks(GameStateClass::EnGameState newState);
 };
 
 #endif // GAMECONTROLLER_H

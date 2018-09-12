@@ -6,5 +6,6 @@
         <file>ViewHelper.js</file>
         <file>CurrentPlayerIndicator.qml</file>
         <file>GameBoard.qml</file>
+        <file>NewGameDialog.qml</file>
     </qresource>
 </RCC>
