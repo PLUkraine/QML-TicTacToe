@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "gamemodel.h"
+#include "keyboardnavigator.h"
 
 class GameController : public QObject
 {
@@ -11,6 +12,7 @@ class GameController : public QObject
 
 private:
     GameModel m_model;
+    KeyboardNavigator m_navigator;
 public:
     static void registerQmlType();
     explicit GameController(QObject *parent = nullptr);
@@ -22,6 +24,7 @@ public:
     Q_INVOKABLE void newGame(int rows, int cols, int cellsToWin);
     Q_INVOKABLE void makeMove(int index);
     Q_INVOKABLE int getIndex(int row, int col) const;
+    Q_INVOKABLE int navigateTo(int index, Qt::Key keyboardInput) const;
 
 signals:
     void playerChanged(bool isXPlayer);

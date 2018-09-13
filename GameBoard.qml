@@ -18,6 +18,13 @@ Item {
         root.enabled = true;
     }
 
+    onFocusChanged: {
+        var anyCell = ViewHelper.anyCell();
+        if (focus && anyCell && anyCell.enabled) {
+            anyCell.focus = true;
+        }
+    }
+
     GameController {
         id: gameController
 

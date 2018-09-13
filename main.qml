@@ -36,8 +36,6 @@ ApplicationWindow {
             appStatusBar.currentPlayerView.changePlayer(isXTurn)
         }
     }
-
-
     Action {
         id: newGameAction
         text: "&New Game..."
@@ -59,6 +57,11 @@ ApplicationWindow {
 
         onStartNewGame: {
             gameBoard.startNewGame(rows, cols, cellsToWin);
+            gameBoard.focus = true;
         }
+    }
+
+    Component.onCompleted: {
+        gameBoard.focus = true;
     }
 }

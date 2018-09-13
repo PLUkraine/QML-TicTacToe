@@ -10,6 +10,10 @@ function initialize(root, controller, cellsCapacity) {
     controller.cellChanged.connect(__onCellChangedCallback__);
 }
 
+function anyCell() {
+    return __cells__[0];
+}
+
 function newGame(root, controller, rows, cols, cellsToWin) {
     __cells__.forEach(__resetCell__);
 
@@ -108,7 +112,11 @@ function __initCells__(root, controller, capacity) {
             controller.makeMove(controller.getIndex(sender.row, sender.col));
         });
         cell.navigateTo.connect(function (sender, direction) {
-           console.log("HAHA ya choto ne xochu iti tuda " + direction);
+            var curIndex = controller.getIndex(sender.row, sender.col);
+            var newCellIndex = controller.navigateTo(curIndex, direction);
+            if (curIndex === newCellIndex) return;
+
+            __cells__[newCellIndex].focus = true;
         });
         __cells__.push(cell);
     }

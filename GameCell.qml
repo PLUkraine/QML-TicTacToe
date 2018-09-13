@@ -6,6 +6,7 @@ Rectangle {
 
     property real disabledDim: 1.0
     property real focusDim: 0.0
+    property real maxFocusDim: 0.3
 
     property int row: -1
     property int col: -1
@@ -17,12 +18,10 @@ Rectangle {
     border.width: 0.5
 
     onEnabledChanged: {
-        disabledDim = !enabled ? 1.5 : 1.0
+        disabledDim = enabled ? 1.0 : 1.5
     }
     onFocusChanged: {
-        if (!root.activeFocus) {
-            focusDim = 0.0;
-        }
+        focusDim = root.activeFocus ? maxFocusDim : 0.0;
     }
 
     MouseArea {
@@ -37,10 +36,13 @@ Rectangle {
         }
     }
     Keys.onPressed: {
-        var mappedKeys = [Qt.Key_Left, Qt.Key_Right, Qt.Key_Up, Qt.Key_Down];
-        if (mappedKeys.indexOf(event.key) >= 0) {
-            event.accepted = true;
-            navigateTo(root, event.key)
+        event.accepted = true;
+        if (event.key === Qt.Key_Return) {
+            if (root.state !== "clickable") return;
+            activated(root);
+        }
+        else {
+            navigateTo(root, event.key);
         }
     }
 
@@ -62,7 +64,7 @@ Rectangle {
         running: root.activeFocus
 
         onTriggered: {
-            focusDim = focusDim === 0.0 ? 0.3 : 0.0
+            focusDim = focusDim === 0.0 ? maxFocusDim : 0.0
         }
     }
 
