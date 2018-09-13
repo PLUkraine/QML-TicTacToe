@@ -10,6 +10,7 @@ Rectangle {
     property int row: -1
     property int col: -1
 
+    signal navigateTo(variant sender, int direction)
     signal activated(variant sender)
 
     border.color: "black"
@@ -33,6 +34,13 @@ Rectangle {
             if (root.state !== "clickable") return;
 
             root.activated(root);
+        }
+    }
+    Keys.onPressed: {
+        var mappedKeys = [Qt.Key_Left, Qt.Key_Right, Qt.Key_Up, Qt.Key_Down];
+        if (mappedKeys.indexOf(event.key) >= 0) {
+            event.accepted = true;
+            navigateTo(root, event.key)
         }
     }
 

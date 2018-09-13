@@ -1,6 +1,8 @@
 .import TicTacToe 1.0 as GameLogic
 
 var __cells__ = [];
+var __currentRows__ = 0;
+var __currentCols__ = 0;
 
 function initialize(root, controller, cellsCapacity) {
     __initCells__(root, controller, cellsCapacity);
@@ -13,6 +15,8 @@ function newGame(root, controller, rows, cols, cellsToWin) {
 
     console.assert(rows*cols < __cells__.length);
     __newGameCells__(root, rows, cols);
+    __currentRows__ = rows;
+    __currentCols__ = cols;
 
     controller.newGame(rows, cols, cellsToWin);
     __cells__.forEach(function(cell) {
@@ -37,7 +41,6 @@ function gameStateToString(gameState) {
     }
     return "ERROR"
 }
-
 
 function __onCellChangedCallback__(index, newState) {
     var cell = __cells__[index];
@@ -103,6 +106,9 @@ function __initCells__(root, controller, capacity) {
             if (!sender.enabled) return;
 
             controller.makeMove(controller.getIndex(sender.row, sender.col));
+        });
+        cell.navigateTo.connect(function (sender, direction) {
+           console.log("HAHA ya choto ne xochu iti tuda " + direction);
         });
         __cells__.push(cell);
     }
