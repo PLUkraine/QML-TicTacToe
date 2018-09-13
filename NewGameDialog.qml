@@ -29,6 +29,7 @@ Dialog {
                 id: rowsSpinbox
                 minimumValue: 2
                 maximumValue: 5
+                value: 3
             }
         }
         RowLayout {
@@ -41,6 +42,7 @@ Dialog {
                 id: colsSpinbox
                 minimumValue: 2
                 maximumValue: 5
+                value: 3
             }
         }
         RowLayout {
@@ -53,6 +55,7 @@ Dialog {
                 id: winCountSpinbox
                 minimumValue: 2
                 maximumValue: Math.min(5, rowsSpinbox.value, colsSpinbox.value)
+                value: 3
             }
         }
     }
