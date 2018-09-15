@@ -1,7 +1,7 @@
 #ifndef CELLSTATEENUM_H
 #define CELLSTATEENUM_H
 
-#include <QQmlEngine>
+#include <QObject>
 
 class CellStateEnum : public QObject
 {

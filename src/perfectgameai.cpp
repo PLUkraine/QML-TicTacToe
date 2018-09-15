@@ -13,7 +13,7 @@ int PerfectGameAi::makeMove(GameBoard *model, bool isAiX, bool isXTurn)
 
 IndexScore PerfectGameAi::minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn)
 {
-    IndexScore answer = isAiTurn ? std::make_pair(-1, -100) : std::make_pair(-1, 100);
+    IndexScore answer = std::make_pair(-1, isAiTurn ? -100 : 100);
 
     for (int i=0; i<board->getIndexCount(); ++i) {
         if (board->getCell(i) != CellStateEnum::EMPTY) continue;
@@ -32,12 +32,12 @@ IndexScore PerfectGameAi::minMaxRecursion(GameBoard *board, CellStateEnum::EnCel
             recursionAnswer = {i, 0};
         }
         else {
-            return std::make_pair(i, isAiTurn ? 10 : -10);
+            recursionAnswer = std::make_pair(i, isAiTurn ? 10 : -10);
         }
 
         if ((isAiTurn && answer.second < recursionAnswer.second) ||
                 (!isAiTurn && answer.second > recursionAnswer.second)) {
-            answer = recursionAnswer;
+            answer = {i, recursionAnswer.second};
         }
 
         board->setCell(i, CellStateEnum::EMPTY);

@@ -28,6 +28,10 @@ public:
     void setCell(int index, CellStateEnum::EnCellState value);
 
     int getIndex(int row, int col) const;
+
+    bool operator==(const GameBoard& other) const;
+
+    void debugPrint() const;
 };
 
 #endif // GAMEBOARD_H

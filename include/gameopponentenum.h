@@ -1,7 +1,7 @@
 #ifndef GAMEOPPONENTENUM_H
 #define GAMEOPPONENTENUM_H
 
-#include <QQmlEngine>
+#include <QObject>
 
 class GameOpponentEnum : public QObject
 {

@@ -1,4 +1,5 @@
 #include "gameopponentenum.h"
+#include <QQmlEngine>
 
 void GameOpponentEnum::registerQmlType()
 {

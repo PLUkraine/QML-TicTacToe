@@ -1,4 +1,6 @@
 #include "cellstateenum.h"
+#include <QQmlEngine>
+
 
 void CellStateEnum::registerQmlType()
 {

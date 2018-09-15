@@ -1,5 +1,6 @@
 #include "gameboard.h"
 #include <algorithm>
+#include <QDebug>
 
 GameBoard::GameBoard()
 {
@@ -55,4 +56,24 @@ void GameBoard::setCell(int index, CellStateEnum::EnCellState value)
 int GameBoard::getIndex(int row, int col) const
 {
     return row * m_width + col;
+}
+
+bool GameBoard::operator==(const GameBoard &other) const
+{
+    return other.m_cellsToWin == m_cellsToWin
+            && other.m_board == m_board
+            && other.m_height == m_height
+            && other.m_width == m_width;
+}
+
+void GameBoard::debugPrint() const
+{
+    for (int i=0; i<m_height; ++i) {
+        QString line;
+        for (int j=0; j<m_width; ++j) {
+            line += QString::number(getCell(getIndex(i, j)));
+            line += " ";
+        }
+        qDebug() << line;
+    }
 }

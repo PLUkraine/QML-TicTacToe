@@ -1,7 +1,7 @@
 #ifndef GAMESTATEENUM_H
 #define GAMESTATEENUM_H
 
-#include <QQmlEngine>
+#include <QObject>
 
 class GameStateClass : public QObject
 {
