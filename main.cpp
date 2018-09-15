@@ -4,6 +4,7 @@
 #include "gamecontroller.h"
 #include "gamestateenum.h"
 #include "cellstateenum.h"
+#include "gameopponentenum.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     GameController::registerQmlType();
     GameStateClass::registerQmlType();
     CellStateEnum::registerQmlType();
+    GameOpponentEnum::registerQmlType();
 
 
     QQmlApplicationEngine engine;

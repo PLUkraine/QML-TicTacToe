@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>GameCell.qml</file>
-        <file>Bar.qml</file>
         <file>ViewHelper.js</file>
         <file>CurrentPlayerIndicator.qml</file>
         <file>GameBoard.qml</file>

@@ -9,7 +9,7 @@ Dialog {
     signal startNewGame(int rows, int cols, int cellsToWin)
 
     modality: Qt.WindowModal
-    title: "Start new game!"
+    title: qsTr("Start new game")
     standardButtons: Dialog.Ok | Dialog.Cancel
     onAccepted: startNewGame(rowsSpinbox.value,
                              colsSpinbox.value,
@@ -23,7 +23,7 @@ Dialog {
             Layout.columnSpan: 2
             Layout.alignment: Qt.AlignHCenter
             Label {
-                text: "Rows"
+                text: qsTr("Rows")
             }
             SpinBox {
                 id: rowsSpinbox
@@ -36,7 +36,7 @@ Dialog {
             Layout.columnSpan: 2
             Layout.alignment: Qt.AlignHCenter
             Label {
-                text: "Cols"
+                text: qsTr("Cols")
             }
             SpinBox {
                 id: colsSpinbox
@@ -49,7 +49,7 @@ Dialog {
             Layout.columnSpan: 2
             Layout.alignment: Qt.AlignHCenter
             Label {
-                text: "Cells to win"
+                text: qsTr("Cells to win")
             }
             SpinBox {
                 id: winCountSpinbox

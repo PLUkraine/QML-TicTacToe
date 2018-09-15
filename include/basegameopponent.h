@@ -9,7 +9,11 @@ class BaseGameOpponent : public QObject
 public:
     explicit BaseGameOpponent(QObject *parent = nullptr);
 
+    virtual void queryMove(/*TODO pass board here*/)=0;
+
 signals:
+    void moveSuccess();
+    void moveFailed();
 };
 
 #endif // BASEGAMEOPPONENT_H

@@ -6,7 +6,7 @@ Rectangle {
 
     property real disabledDim: 1.0
     property real focusDim: 0.0
-    property real maxFocusDim: 0.3
+    property real maxFocusDim: 0.2
 
     property int row: -1
     property int col: -1
@@ -56,16 +56,6 @@ Rectangle {
     Behavior on y {
         enabled: root.enableMoveAnimations
         NumberAnimation { duration: 300 }
-    }
-    Timer {
-        id: colorDimTimer
-        interval: 1000
-        repeat: true
-        running: root.activeFocus
-
-        onTriggered: {
-            focusDim = focusDim === 0.0 ? maxFocusDim : 0.0
-        }
     }
 
     states: [

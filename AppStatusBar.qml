@@ -12,7 +12,7 @@ StatusBar {
     RowLayout {
         Label {
             id: gameStatus
-            text: "Running"
+            text: qsTr("Running")
         }
 
         Rectangle {
@@ -22,7 +22,7 @@ StatusBar {
         }
 
         Label {
-            text: "Turn"
+            text: qsTr("Turn")
         }
 
         CurrentPlayerIndicator {
