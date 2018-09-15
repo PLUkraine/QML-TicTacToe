@@ -20,6 +20,7 @@ public:
 
     int getWidth() const;
     int getHeight() const;
+    int getIndexCount() const;
 
     CellStateEnum::EnCellState getCell(int index) const;
     void setCell(int index, CellStateEnum::EnCellState value);

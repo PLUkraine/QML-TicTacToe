@@ -5,7 +5,7 @@ GameStateAlgorithm::GameStateAlgorithm()
 
 }
 
-GameStateClass::EnGameState GameStateAlgorithm::getState(GameBoard *board, int changedIndex, int cellsToWin)
+GameStateClass::EnGameState GameStateAlgorithm::getState(GameBoard *board, int changedIndex, int cellsToWin) const
 {
     HorizontalIterator hIt(changedIndex, board->getWidth(), board->getHeight());
     if (checkPath(board, &hIt, cellsToWin)) {
@@ -27,7 +27,12 @@ GameStateClass::EnGameState GameStateAlgorithm::getState(GameBoard *board, int c
     return board->hasEmpty() ? GameStateClass::STATE_NOTHING : GameStateClass::STATE_DRAW;
 }
 
-bool GameStateAlgorithm::checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin)
+CellStateEnum::EnCellState GameStateAlgorithm::changePlayer(CellStateEnum::EnCellState curPlayer) const
+{
+    return curPlayer == CellStateEnum::X ? CellStateEnum::O : CellStateEnum::X;
+}
+
+bool GameStateAlgorithm::checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin) const
 {
     CellStateEnum::EnCellState target = board->getCell(iterator->getCurrent());
 
@@ -51,7 +56,7 @@ bool GameStateAlgorithm::checkPath(GameBoard *board, BoardIterator *iterator, in
     return cellsToWin == 0;
 }
 
-GameStateClass::EnGameState GameStateAlgorithm::determineWinner(GameBoard *board, int pos)
+GameStateClass::EnGameState GameStateAlgorithm::determineWinner(GameBoard *board, int pos) const
 {
     return board->getCell(pos) == CellStateEnum::EnCellState::X
             ? GameStateClass::STATE_X_WIN

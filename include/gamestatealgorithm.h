@@ -10,11 +10,12 @@ class GameStateAlgorithm
 public:
     GameStateAlgorithm();
 
-    GameStateClass::EnGameState getState(GameBoard *board, int changedIndex, int cellsToWin);
+    GameStateClass::EnGameState getState(GameBoard *board, int changedIndex, int cellsToWin) const;
+    CellStateEnum::EnCellState changePlayer(CellStateEnum::EnCellState curPlayer) const;
 
 private:
-    bool checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin);
-    GameStateClass::EnGameState determineWinner(GameBoard *board, int pos);
+    bool checkPath(GameBoard *board, BoardIterator *iterator, int cellsToWin) const;
+    GameStateClass::EnGameState determineWinner(GameBoard *board, int pos) const;
 };
 
 #endif // GAMESTATEALGORITHM_H

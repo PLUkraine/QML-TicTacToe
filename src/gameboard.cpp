@@ -31,6 +31,11 @@ int GameBoard::getHeight() const
     return m_height;
 }
 
+int GameBoard::getIndexCount() const
+{
+    return static_cast<int>(m_board.size());
+}
+
 CellStateEnum::EnCellState GameBoard::getCell(int index) const
 {
     return m_board[static_cast<std::size_t>(index)];

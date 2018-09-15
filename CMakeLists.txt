@@ -25,6 +25,8 @@ set(game_logic_sources
     include/basegameopponent.h
     include/keyboardnavigator.h
     include/gameopponentenum.h
+    include/igameai.h
+    include/perfectgameai.h
 
     src/gamecontroller.cpp
     src/gameboard.cpp
@@ -36,6 +38,8 @@ set(game_logic_sources
     src/basegameopponent.cpp
     src/keyboardnavigator.cpp
     src/gameopponentenum.cpp
+    src/igameai.cpp
+    src/perfectgameai.cpp
 )
 ADD_LIBRARY(GameLogicLib STATIC ${game_logic_sources})
 target_link_libraries(GameLogicLib PRIVATE Qt5::Core Qt5::Quick)
