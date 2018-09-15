@@ -5,22 +5,22 @@ GameStateAlgorithm::GameStateAlgorithm()
 
 }
 
-GameStateClass::EnGameState GameStateAlgorithm::getState(GameBoard *board, int changedIndex, int cellsToWin) const
+GameStateClass::EnGameState GameStateAlgorithm::getState(GameBoard *board, int changedIndex) const
 {
     HorizontalIterator hIt(changedIndex, board->getWidth(), board->getHeight());
-    if (checkPath(board, &hIt, cellsToWin)) {
+    if (checkPath(board, &hIt, board->getCellsToWin())) {
         return determineWinner(board, changedIndex);
     }
     VerticalIterator vIt(changedIndex, board->getWidth(), board->getHeight());
-    if (checkPath(board, &vIt, cellsToWin)) {
+    if (checkPath(board, &vIt, board->getCellsToWin())) {
         return determineWinner(board, changedIndex);
     }
     MainDiagonalIterator dIt(changedIndex, board->getWidth(), board->getHeight());
-    if (checkPath(board, &dIt, cellsToWin)) {
+    if (checkPath(board, &dIt, board->getCellsToWin())) {
         return determineWinner(board, changedIndex);
     }
     AlternativeDiagonalIterator adIt(changedIndex, board->getWidth(), board->getHeight());
-    if (checkPath(board, &adIt, cellsToWin)) {
+    if (checkPath(board, &adIt, board->getCellsToWin())) {
         return determineWinner(board, changedIndex);
     }
 

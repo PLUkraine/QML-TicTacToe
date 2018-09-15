@@ -10,8 +10,7 @@ GameModel::GameModel()
 void GameModel::startNewGame(int rows, int cols, int cellsToWin)
 {
     m_isActive = true;
-    m_board.newGame(rows, cols);
-    m_cellsToWin = cellsToWin;
+    m_board.newGame(rows, cols, cellsToWin);
     m_playerXTurn = true;
 }
 
@@ -25,7 +24,7 @@ GameStateClass::EnGameState GameModel::makeMove(int index)
                         : CellStateEnum::EnCellState::O);
     m_playerXTurn = !m_playerXTurn;
 
-    auto answer = m_stateAlgo.getState(&m_board, index, m_cellsToWin);
+    auto answer = m_stateAlgo.getState(&m_board, index);
     if (answer != GameStateClass::STATE_NOTHING) {
         m_isActive = false;
     }

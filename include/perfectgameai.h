@@ -17,10 +17,10 @@ public:
 
     // IGameAI interface
 public:
-    virtual int makeMove(GameBoard *model, bool isAiX, bool isXTurn, int cellsTiWin) override;
+    virtual int makeMove(GameBoard *model, bool isAiX, bool isXTurn) override;
 
 private:
-    IndexScore minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn, int cellsToWin);
+    IndexScore minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn);
 };
 
 #endif // PERFECTGAMEAI_H

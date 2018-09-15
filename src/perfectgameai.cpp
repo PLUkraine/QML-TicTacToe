@@ -5,13 +5,13 @@ PerfectGameAi::PerfectGameAi()
 
 }
 
-int PerfectGameAi::makeMove(GameBoard *model, bool isAiX, bool isXTurn, int cellsToWin)
+int PerfectGameAi::makeMove(GameBoard *model, bool isAiX, bool isXTurn)
 {
     CellStateEnum::EnCellState curPlayer = isXTurn ? CellStateEnum::X : CellStateEnum::O;
-    return minMaxRecursion(model, curPlayer, isAiX == isXTurn, cellsToWin).first;
+    return minMaxRecursion(model, curPlayer, isAiX == isXTurn).first;
 }
 
-IndexScore PerfectGameAi::minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn, int cellsToWin)
+IndexScore PerfectGameAi::minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn)
 {
     IndexScore answer = isAiTurn ? std::make_pair(-1, -100) : std::make_pair(-1, 100);
 
@@ -20,14 +20,13 @@ IndexScore PerfectGameAi::minMaxRecursion(GameBoard *board, CellStateEnum::EnCel
 
         board->setCell(i, curPlayer);
 
-        GameStateClass::EnGameState state = m_stateAlgo.getState(board, i, cellsToWin);
+        GameStateClass::EnGameState state = m_stateAlgo.getState(board, i);
 
         IndexScore recursionAnswer;
         if (state == GameStateClass::STATE_NOTHING) {
             recursionAnswer = minMaxRecursion(board,
                                               m_stateAlgo.changePlayer(curPlayer),
-                                              !isAiTurn,
-                                              cellsToWin);
+                                              !isAiTurn);
         }
         else if (state == GameStateClass::STATE_DRAW) {
             recursionAnswer = {i, 0};

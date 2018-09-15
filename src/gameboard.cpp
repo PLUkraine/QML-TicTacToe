@@ -6,10 +6,11 @@ GameBoard::GameBoard()
 
 }
 
-void GameBoard::newGame(int rows, int cols)
+void GameBoard::newGame(int rows, int cols, int cellsToWin)
 {
     m_height = rows;
     m_width = cols;
+    m_cellsToWin = cellsToWin;
 
     m_board.assign(static_cast<std::size_t>(rows*cols), CellStateEnum::EnCellState::EMPTY);
 }
@@ -29,6 +30,11 @@ int GameBoard::getWidth() const
 int GameBoard::getHeight() const
 {
     return m_height;
+}
+
+int GameBoard::getCellsToWin() const
+{
+    return m_cellsToWin;
 }
 
 int GameBoard::getIndexCount() const

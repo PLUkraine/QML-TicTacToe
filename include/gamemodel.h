@@ -6,7 +6,6 @@
 
 class GameModel {
 private:
-    int m_cellsToWin;
     GameStateAlgorithm m_stateAlgo;
     GameBoard m_board;
     bool m_playerXTurn;

@@ -10,7 +10,7 @@ class GameStateAlgorithm
 public:
     GameStateAlgorithm();
 
-    GameStateClass::EnGameState getState(GameBoard *board, int changedIndex, int cellsToWin) const;
+    GameStateClass::EnGameState getState(GameBoard *board, int changedIndex) const;
     CellStateEnum::EnCellState changePlayer(CellStateEnum::EnCellState curPlayer) const;
 
 private:
