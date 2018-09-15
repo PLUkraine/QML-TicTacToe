@@ -13,8 +13,8 @@ Item {
     function randomIntBetween(low, high) {
         return Math.floor(low + Math.random() * (high - low));
     }
-    function startNewGame(rows, cols, cellsToWin) {
-        ViewHelper.newGame(root, gameController, rows, cols, cellsToWin);
+    function startNewGame(rows, cols, cellsToWin, opponentType) {
+        ViewHelper.newGame(root, gameController, rows, cols, cellsToWin, opponentType);
         root.enabled = true;
     }
 
@@ -40,6 +40,6 @@ Item {
         var cellsToWin = 4;
 
         ViewHelper.initialize(root, gameController, 40);
-        ViewHelper.newGame(root, gameController, rows, cols, cellsToWin);
+        ViewHelper.newGame(root, gameController, rows, cols, cellsToWin, GameOpponent.NONE);
     }
 }

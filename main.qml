@@ -56,7 +56,7 @@ ApplicationWindow {
         id: newGameDialog
 
         onStartNewGame: {
-            gameBoard.startNewGame(rows, cols, cellsToWin);
+            gameBoard.startNewGame(rows, cols, cellsToWin, opponentType);
             gameBoard.focus = true;
         }
     }

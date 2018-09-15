@@ -14,7 +14,7 @@ function anyCell() {
     return __cells__[0];
 }
 
-function newGame(root, controller, rows, cols, cellsToWin) {
+function newGame(root, controller, rows, cols, cellsToWin, opponentType) {
     __cells__.forEach(__resetCell__);
 
     console.assert(rows*cols < __cells__.length);
@@ -22,7 +22,7 @@ function newGame(root, controller, rows, cols, cellsToWin) {
     __currentRows__ = rows;
     __currentCols__ = cols;
 
-    controller.newGame(rows, cols, cellsToWin);
+    controller.newGame(rows, cols, cellsToWin, opponentType);
     __cells__.forEach(function(cell) {
         cell.enableMoveAnimations = false;
     })

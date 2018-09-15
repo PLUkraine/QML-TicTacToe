@@ -17,7 +17,7 @@ bool GameController::isXTurn() const
     return m_model.isXTurn();
 }
 
-void GameController::newGame(int rows, int cols, int cellsToWin)
+void GameController::newGame(int rows, int cols, int cellsToWin, int gameOpponent)
 {
     m_model.startNewGame(rows, cols, cellsToWin);
     m_navigator.resetDimensions(rows, cols);
