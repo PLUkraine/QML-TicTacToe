@@ -14,6 +14,7 @@ GameController::GameController(QObject *parent)
 {
     connect(m_model, &GameModel::cellChanged, this, &GameController::cellChanged);
     connect(m_model, &GameModel::playerChanged, this, &GameController::playerChanged);
+    connect(m_model, &GameModel::gameIsOver, this, &GameController::gameIsOver);
 }
 
 bool GameController::isXTurn() const
@@ -29,10 +30,7 @@ void GameController::newGame(int rows, int cols, int cellsToWin, int gameOpponen
 
 void GameController::makeMove(int index)
 {
-    auto newState = m_model->makePlayerMove(index);
-    postMoveChecks(newState);
-
-    // TODO if (opponent)
+    m_model->makePlayerMove(index);
 }
 
 int GameController::getIndex(int row, int col) const
@@ -43,10 +41,4 @@ int GameController::getIndex(int row, int col) const
 int GameController::navigateTo(int index, Qt::Key keyboardInput) const
 {
     return m_navigator.navigateTo(index, keyboardInput);
-}
-
-void GameController::postMoveChecks(GameStateClass::EnGameState newState) {
-    if (newState != GameStateClass::STATE_NOTHING) {
-        emit gameIsOver(static_cast<int>(newState));
-    }
 }

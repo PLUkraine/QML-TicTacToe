@@ -17,7 +17,7 @@ public:
     GameModel(QObject *parent = nullptr);
 
     void startNewGame(int rows, int cols, int cellsToWin);
-    GameStateClass::EnGameState makePlayerMove(int index);
+    void makePlayerMove(int index);
 
 
     CellStateEnum::EnCellState getCell(int index) const;
@@ -26,13 +26,14 @@ public:
 
 signals:
     void playerChanged(bool isXPlayer);
-    void cellChanged(int index, int newState);
+    void cellChanged(int index, int cellValue);
+    void gameIsOver(GameStateClass::EnGameState state);
 
 private:
     void flipPlayer();
     void resetPlayer();
     void setCell(int index);
-    GameStateClass::EnGameState computeState(int changedIndex);
+    void computeState(int changedIndex);
 };
 
 #endif // GAMEMODEL_H

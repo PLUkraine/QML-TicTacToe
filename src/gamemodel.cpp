@@ -15,13 +15,13 @@ void GameModel::startNewGame(int rows, int cols, int cellsToWin)
     resetPlayer();
 }
 
-GameStateClass::EnGameState GameModel::makePlayerMove(int index)
+void GameModel::makePlayerMove(int index)
 {
     assert(m_isActive);
 
     setCell(index);
     flipPlayer();
-    return computeState(index);
+    computeState(index);
 }
 
 
@@ -53,13 +53,13 @@ void GameModel::setCell(int index)
     emit cellChanged(index, state);
 }
 
-GameStateClass::EnGameState GameModel::computeState(int changedIndex)
+void GameModel::computeState(int changedIndex)
 {
     auto answer = m_stateAlgo.getState(&m_board, changedIndex);
     if (answer != GameStateClass::STATE_NOTHING) {
         m_isActive = false;
+        emit gameIsOver(answer);
     }
-    return answer;
 }
 
 CellStateEnum::EnCellState GameModel::getCell(int index) const
