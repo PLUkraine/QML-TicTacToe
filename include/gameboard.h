@@ -2,7 +2,7 @@
 #define GAMEBOARD_H
 
 #include <vector>
-#include "cellstateenum.h"
+#include "enums/cellstateenum.h"
 
 class GameBoard
 {

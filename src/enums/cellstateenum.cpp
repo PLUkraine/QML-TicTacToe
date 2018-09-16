@@ -1,4 +1,4 @@
-#include "cellstateenum.h"
+#include "enums/cellstateenum.h"
 #include <QQmlEngine>
 
 

@@ -1,4 +1,4 @@
-#include "gamestateenum.h"
+#include "enums/gamestateenum.h"
 #include <QQmlEngine>
 
 void GameStateClass::registerQmlType() {

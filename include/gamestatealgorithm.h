@@ -2,8 +2,8 @@
 #define GAMESTATEALGORITHM_H
 
 #include "gameboard.h"
-#include "gamestateenum.h"
 #include "boarditerator.h"
+#include "enums/gamestateenum.h"
 
 class GameStateAlgorithm
 {

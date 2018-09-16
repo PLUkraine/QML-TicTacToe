@@ -2,9 +2,9 @@
 #include <QQmlApplicationEngine>
 
 #include "gamecontroller.h"
-#include "gamestateenum.h"
-#include "cellstateenum.h"
-#include "gameopponentenum.h"
+#include "enums/gamestateenum.h"
+#include "enums/cellstateenum.h"
+#include "enums/gameopponentenum.h"
 
 int main(int argc, char *argv[])
 {

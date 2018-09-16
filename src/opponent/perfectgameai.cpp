@@ -1,4 +1,4 @@
-#include "perfectgameai.h"
+#include "opponent/perfectgameai.h"
 
 PerfectGameAi::PerfectGameAi()
 {

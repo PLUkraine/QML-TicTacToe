@@ -2,8 +2,8 @@
 #define PERFECTGAMEAI_H
 
 #include "igameai.h"
-#include <utility>
 #include "gamestatealgorithm.h"
+#include <utility>
 
 typedef std::pair<int, int> IndexScore;
 

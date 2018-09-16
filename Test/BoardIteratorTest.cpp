@@ -1,7 +1,7 @@
 #include <QTest>
 
 #include "boarditerator.h"
-#include "perfectgameai.h"
+#include "opponent/perfectgameai.h"
 
 class BoardIteratorTest : public QObject {
     Q_OBJECT
