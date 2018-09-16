@@ -2,6 +2,7 @@
 #define BASEGAMEOPPONENT_H
 
 #include <QObject>
+#include "gameboard.h"
 
 class BaseGameOpponent : public QObject
 {
@@ -9,10 +10,11 @@ class BaseGameOpponent : public QObject
 public:
     explicit BaseGameOpponent(QObject *parent = nullptr);
 
-    virtual void queryMove(/*TODO pass board here*/)=0;
+    virtual void queryMove(GameBoard *model, bool isXTurn)=0;
+    virtual void endGame(GameBoard *model)=0;
 
 signals:
-    void moveSuccess();
+    void moveSuccess(int index);
     void moveFailed();
 };
 

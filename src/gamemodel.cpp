@@ -14,7 +14,7 @@ void GameModel::startNewGame(int rows, int cols, int cellsToWin)
     m_playerXTurn = true;
 }
 
-GameStateClass::EnGameState GameModel::makeMove(int index)
+GameStateClass::EnGameState GameModel::makePlayerMove(int index)
 {
     assert(m_isActive);
 
@@ -30,6 +30,7 @@ GameStateClass::EnGameState GameModel::makeMove(int index)
     }
     return answer;
 }
+
 
 bool GameModel::isXTurn() const
 {

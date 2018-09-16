@@ -26,7 +26,7 @@ void GameController::newGame(int rows, int cols, int cellsToWin, int gameOpponen
 
 void GameController::makeMove(int index)
 {
-    auto newState = m_model.makeMove(index);
+    auto newState = m_model.makePlayerMove(index);
     emit cellChanged(index, m_model.getCell(index));
     postMoveChecks(newState);
 
