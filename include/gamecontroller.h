@@ -2,6 +2,8 @@
 #define GAMECONTROLLER_H
 
 #include <QObject>
+#include <QPointer>
+
 #include "gamemodel.h"
 #include "keyboardnavigator.h"
 
@@ -11,7 +13,7 @@ class GameController : public QObject
     Q_PROPERTY(bool isXTurn READ isXTurn NOTIFY playerChanged)
 
 private:
-    GameModel m_model;
+    QPointer<GameModel> m_model;
     KeyboardNavigator m_navigator;
 public:
     static void registerQmlType();
