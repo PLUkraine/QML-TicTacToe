@@ -19,29 +19,21 @@ set(game_logic_sources
     include/gameboard.h
     include/boarditerator.h
     include/gamestatealgorithm.h
-    include/enums/gamestateenum.h
     include/gamemodel.h
-    include/enums/cellstateenum.h
-    include/opponent/basegameopponent.h
     include/keyboardnavigator.h
     include/enums/gameopponentenum.h
-    include/opponent/igameai.h
-    include/opponent/perfectgameai.h
-    include/opponent/cpuopponent.h
+    include/enums/gamestateenum.h
+    include/enums/cellstateenum.h
 
     src/gamecontroller.cpp
     src/gameboard.cpp
     src/boarditerator.cpp
     src/gamestatealgorithm.cpp
-    src/enums/gamestateenum.cpp
     src/gamemodel.cpp
-    src/enums/cellstateenum.cpp
-    src/opponent/basegameopponent.cpp
     src/keyboardnavigator.cpp
     src/enums/gameopponentenum.cpp
-    src/opponent/igameai.cpp
-    src/opponent/perfectgameai.cpp
-    src/opponent/cpuopponent.cpp
+    src/enums/gamestateenum.cpp
+    src/enums/cellstateenum.cpp
 )
 ADD_LIBRARY(GameLogicLib STATIC ${game_logic_sources})
 target_link_libraries(GameLogicLib PRIVATE Qt5::Core Qt5::Quick)

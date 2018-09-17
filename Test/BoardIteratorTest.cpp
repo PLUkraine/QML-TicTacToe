@@ -1,7 +1,6 @@
 #include <QTest>
 
 #include "boarditerator.h"
-#include "opponent/perfectgameai.h"
 
 class BoardIteratorTest : public QObject {
     Q_OBJECT
@@ -22,71 +21,69 @@ private slots:
         QVERIFY(!it.hasPrev());
     }
 
-    void testPerfectAi1() {
+//    void testPerfectAi1() {
 
-        GameBoard board;
-        board.newGame(3, 3, 3);
-        board.setCell(0, CellStateEnum::X);
-        board.setCell(1, CellStateEnum::X);
-        board.setCell(2, CellStateEnum::EMPTY);
+//        GameBoard board;
+//        board.newGame(3, 3, 3);
+//        board.setCell(0, CellStateEnum::X);
+//        board.setCell(1, CellStateEnum::X);
+//        board.setCell(2, CellStateEnum::EMPTY);
 
-        board.setCell(3, CellStateEnum::O);
-        board.setCell(4, CellStateEnum::O);
-        board.setCell(5, CellStateEnum::EMPTY);
+//        board.setCell(3, CellStateEnum::O);
+//        board.setCell(4, CellStateEnum::O);
+//        board.setCell(5, CellStateEnum::EMPTY);
 
-        board.setCell(6, CellStateEnum::X);
-        board.setCell(7, CellStateEnum::O);
-        board.setCell(8, CellStateEnum::EMPTY);
-        board.debugPrint();
+//        board.setCell(6, CellStateEnum::X);
+//        board.setCell(7, CellStateEnum::O);
+//        board.setCell(8, CellStateEnum::EMPTY);
+//        board.debugPrint();
 
-        PerfectGameAi ai;
-        int index = ai.makeMove(&board, true);
-        QCOMPARE(index, 2);
+//        PerfectGameAi ai;
+//        int index = ai.makeMove(&board, true);
+//        QCOMPARE(index, 2);
 
-        index = ai.makeMove(&board, false);
-        QCOMPARE(index, 5);
-    }
-    void testPerfectAi2() {
-        GameBoard board;
-        board.newGame(3, 3, 3);
-        board.setCell(0, CellStateEnum::X);
-        board.setCell(1, CellStateEnum::X);
-        board.setCell(2, CellStateEnum::EMPTY);
+//        index = ai.makeMove(&board, false);
+//        QCOMPARE(index, 5);
+//    }
+//    void testPerfectAi2() {
+//        GameBoard board;
+//        board.newGame(3, 3, 3);
+//        board.setCell(0, CellStateEnum::X);
+//        board.setCell(1, CellStateEnum::X);
+//        board.setCell(2, CellStateEnum::EMPTY);
 
-        board.setCell(3, CellStateEnum::O);
-        board.setCell(4, CellStateEnum::O);
-        board.setCell(5, CellStateEnum::EMPTY);
+//        board.setCell(3, CellStateEnum::O);
+//        board.setCell(4, CellStateEnum::O);
+//        board.setCell(5, CellStateEnum::EMPTY);
 
-        board.setCell(6, CellStateEnum::EMPTY);
-        board.setCell(7, CellStateEnum::EMPTY);
-        board.setCell(8, CellStateEnum::EMPTY);
-        board.debugPrint();
+//        board.setCell(6, CellStateEnum::EMPTY);
+//        board.setCell(7, CellStateEnum::EMPTY);
+//        board.setCell(8, CellStateEnum::EMPTY);
+//        board.debugPrint();
 
-        PerfectGameAi ai;
-        int index = ai.makeMove(&board, true);
-        QCOMPARE(index, 2);
+//        PerfectGameAi ai;
+//        int index = ai.makeMove(&board, true);
+//        QCOMPARE(index, 2);
 
-        index = ai.makeMove(&board, false);
-        QCOMPARE(index, 2);
-    }
-    void testPerfectAi3() {
-        GameBoard board;
-        board.newGame(3, 3, 3);
-        board.setCell(0, CellStateEnum::X);
-        board.setCell(1, CellStateEnum::O);
-        board.setCell(2, CellStateEnum::EMPTY);
+//        index = ai.makeMove(&board, false);
+//        QCOMPARE(index, 2);
+//    }
+//    void testPerfectAi3() {
+//        GameBoard board;
+//        board.newGame(3, 3, 3);
+//        board.setCell(0, CellStateEnum::X);
+//        board.setCell(1, CellStateEnum::O);
+//        board.setCell(2, CellStateEnum::EMPTY);
 
-        board.setCell(3, CellStateEnum::EMPTY);
-        board.setCell(4, CellStateEnum::X);
-        board.setCell(5, CellStateEnum::EMPTY);
-        board.debugPrint();
+//        board.setCell(3, CellStateEnum::EMPTY);
+//        board.setCell(4, CellStateEnum::X);
+//        board.setCell(5, CellStateEnum::EMPTY);
+//        board.debugPrint();
 
-        PerfectGameAi ai;
-        int index = ai.makeMove(&board, true);
-        QCOMPARE(index, 8);
-        index = ai.makeMove(&board, false);
-        QCOMPARE(index, 8);
-    }
+//        PerfectGameAi ai;
+//        int index = ai.makeMove(&board, false);
+//        QCOMPARE(index, 8);
+//    }
 };
 
 QTEST_MAIN(BoardIteratorTest)
