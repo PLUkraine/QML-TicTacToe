@@ -3,6 +3,7 @@
 
 #include "gameboard.h"
 #include "gamestatealgorithm.h"
+#include "perfectai.h"
 
 class GameModel : public QObject {
     Q_OBJECT
@@ -10,6 +11,8 @@ class GameModel : public QObject {
 private:
     GameStateAlgorithm m_stateAlgo;
     GameBoard m_board;
+    // TODO replace with OPPONENT
+    std::unique_ptr<PerfectAi> m_ai;
 
     bool m_playerXTurn;
     bool m_isActive;

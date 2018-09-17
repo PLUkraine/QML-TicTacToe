@@ -4,7 +4,8 @@
 
 
 GameModel::GameModel(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_ai(new PerfectAi(this))
 {
     m_isActive = false;
 }
@@ -26,6 +27,13 @@ void GameModel::makePlayerMove(int index)
     setCell(index);
     flipPlayer();
     computeState(index);
+
+    if (!m_isActive) return;
+
+    int ai_index = m_ai->startBlockingComputation(&m_board, isXTurn());
+    setCell(ai_index);
+    flipPlayer();
+    computeState(ai_index);
 }
 
 bool GameModel::isXTurn() const

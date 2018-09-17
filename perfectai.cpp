@@ -73,6 +73,7 @@ ScoreIndexDepth PerfectAi::getCandidate(GameBoard *board, CellStateEnum::EnCellS
     exit(1);
 }
 
+// delay the last move for as long as it is possible!!!!
 bool PerfectAi::isCandidateBetter(const ScoreIndexDepth &answer, const ScoreIndexDepth &candidate, bool isAiTurn) const
 {
     if (isAiTurn) {
