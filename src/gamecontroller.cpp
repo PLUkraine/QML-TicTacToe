@@ -31,6 +31,7 @@ void GameController::newGame(int rows, int cols, int cellsToWin, int gameOpponen
 void GameController::makeMove(int index)
 {
     m_model->makePlayerMove(index);
+    m_model->makeOpponentMove();
 }
 
 int GameController::getIndex(int row, int col) const

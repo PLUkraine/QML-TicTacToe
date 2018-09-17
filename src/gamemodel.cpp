@@ -1,4 +1,5 @@
 #include "gamemodel.h"
+#include <QDebug>
 
 
 
@@ -6,10 +7,12 @@ GameModel::GameModel(QObject *parent)
     : QObject(parent)
 {
     m_isActive = false;
+    m_isOpponentTurn = false;
 }
 
 void GameModel::startNewGame(int rows, int cols, int cellsToWin)
 {
+    setOpponentTurn(false);
     m_isActive = true;
     m_board.newGame(rows, cols, cellsToWin);
     resetPlayer();
@@ -17,18 +20,45 @@ void GameModel::startNewGame(int rows, int cols, int cellsToWin)
 
 void GameModel::makePlayerMove(int index)
 {
-    assert(m_isActive);
+    if (!m_isActive) {
+        qWarning() << "Trying to move player when model is not active!";
+        return;
+    }
 
     setCell(index);
     flipPlayer();
     computeState(index);
 }
 
+void GameModel::makeOpponentMove()
+{
+    // stub
+    if (!m_isActive) {
+        qWarning() << "Trying to move opponent when model is not active!";
+        return;
+    }
+
+    setOpponentTurn(false);
+}
+
+void GameModel::setOpponentTurn(bool value) {
+    if (m_isOpponentTurn == value) {
+        qWarning() << "Setting same value" << value << "for m_isOpponentTurn";
+        return;
+    }
+    m_isOpponentTurn = value;
+    emit isOpponentTurnChanged(m_isOpponentTurn);
+}
 
 bool GameModel::isXTurn() const
 {
     assert(m_isActive);
     return m_playerXTurn;
+}
+
+bool GameModel::isOpponentTurn() const
+{
+    return m_isOpponentTurn;
 }
 
 void GameModel::flipPlayer()
