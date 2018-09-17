@@ -24,6 +24,7 @@ set(game_logic_sources
     include/enums/gameopponentenum.h
     include/enums/gamestateenum.h
     include/enums/cellstateenum.h
+    perfectai.h
 
     src/gamecontroller.cpp
     src/gameboard.cpp
@@ -34,6 +35,7 @@ set(game_logic_sources
     src/enums/gameopponentenum.cpp
     src/enums/gamestateenum.cpp
     src/enums/cellstateenum.cpp
+    perfectai.cpp
 )
 ADD_LIBRARY(GameLogicLib STATIC ${game_logic_sources})
 target_link_libraries(GameLogicLib PRIVATE Qt5::Core Qt5::Quick)
