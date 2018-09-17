@@ -40,10 +40,10 @@ private slots:
         board.debugPrint();
 
         PerfectGameAi ai;
-        int index = ai.makeMove(&board, true, true);
+        int index = ai.makeMove(&board, true);
         QCOMPARE(index, 2);
 
-        index = ai.makeMove(&board, false, false);
+        index = ai.makeMove(&board, false);
         QCOMPARE(index, 5);
     }
     void testPerfectAi2() {
@@ -63,11 +63,29 @@ private slots:
         board.debugPrint();
 
         PerfectGameAi ai;
-        int index = ai.makeMove(&board, true, true);
+        int index = ai.makeMove(&board, true);
         QCOMPARE(index, 2);
 
-        index = ai.makeMove(&board, false, false);
+        index = ai.makeMove(&board, false);
         QCOMPARE(index, 2);
+    }
+    void testPerfectAi3() {
+        GameBoard board;
+        board.newGame(3, 3, 3);
+        board.setCell(0, CellStateEnum::X);
+        board.setCell(1, CellStateEnum::O);
+        board.setCell(2, CellStateEnum::EMPTY);
+
+        board.setCell(3, CellStateEnum::EMPTY);
+        board.setCell(4, CellStateEnum::X);
+        board.setCell(5, CellStateEnum::EMPTY);
+        board.debugPrint();
+
+        PerfectGameAi ai;
+        int index = ai.makeMove(&board, true);
+        QCOMPARE(index, 8);
+        index = ai.makeMove(&board, false);
+        QCOMPARE(index, 8);
     }
 };
 

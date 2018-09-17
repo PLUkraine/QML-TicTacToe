@@ -8,7 +8,7 @@ class IGameAI
 {
 public:
     virtual ~IGameAI();
-    virtual int makeMove(GameBoard *model, bool isAiX, bool isXTurn)=0;
+    virtual int makeMove(GameBoard *model, bool isAiX)=0;
 };
 
 #endif // IGAMEAI_H

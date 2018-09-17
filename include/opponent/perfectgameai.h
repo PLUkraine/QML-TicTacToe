@@ -3,9 +3,9 @@
 
 #include "igameai.h"
 #include "gamestatealgorithm.h"
-#include <utility>
+#include <tuple>
 
-typedef std::pair<int, int> IndexScore;
+typedef std::tuple<int, int, int> IndexScoreDepth;
 
 class PerfectGameAi : public IGameAI
 {
@@ -17,10 +17,12 @@ public:
 
     // IGameAI interface
 public:
-    virtual int makeMove(GameBoard *model, bool isAiX, bool isXTurn) override;
+    virtual int makeMove(GameBoard *model, bool isAiX) override;
 
 private:
-    IndexScore minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn);
+    IndexScoreDepth minMaxRecursion(GameBoard *board, CellStateEnum::EnCellState curPlayer, bool isAiTurn, int depth);
+private:
+    bool isNewAnswerBetter(IndexScoreDepth old, IndexScoreDepth newAnswer, bool isAiTurn) const;
 };
 
 #endif // PERFECTGAMEAI_H

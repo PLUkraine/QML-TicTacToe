@@ -20,8 +20,8 @@ void CpuOpponent::endGame(GameBoard *)
     // do nothing
 }
 
-void CpuOpponent::computeMove(GameBoard *model, bool isXTurn)
+void CpuOpponent::computeMove(GameBoard *model, bool)
 {
-    int index = m_ai->makeMove(model, m_isAiX, isXTurn);
+    int index = m_ai->makeMove(model, m_isAiX);
     emit moveSuccess(index);
 }
