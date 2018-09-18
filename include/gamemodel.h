@@ -18,7 +18,7 @@ private:
 
     bool m_playerXTurn;
     bool m_canPlayerMove;
-    bool m_isActive;
+    bool m_isGameActive;
 
 public:
     GameModel(QObject *parent = nullptr);
