@@ -1,6 +1,9 @@
 #include "gamemodel.h"
 #include <QDebug>
 
+#include "opponents/perfectai.h"
+
+
 
 
 GameModel::GameModel(QObject *parent)
@@ -96,7 +99,7 @@ void GameModel::setAi()
     }
 
     m_ai = new PerfectAi(this);
-    connect(m_ai, &PerfectAi::computationEnded, this, &GameModel::onComputationEnded);
+    connect(m_ai, &IGameOpponent::computationEnded, this, &GameModel::onComputationEnded);
 }
 
 void GameModel::onComputationEnded(int index)

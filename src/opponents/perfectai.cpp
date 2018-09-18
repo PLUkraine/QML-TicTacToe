@@ -5,14 +5,14 @@
 using std::get;
 
 PerfectAi::PerfectAi(QObject *parent)
-    : QObject (parent),
+    : IGameOpponent(parent),
       m_cancel(false)
 {
 }
 
 PerfectAi::~PerfectAi()
 {
-    cancelComputation();
+    __cancelComputation();
 }
 
 void PerfectAi::startComputation(GameBoard *board, bool isXTurn)
@@ -29,6 +29,11 @@ int PerfectAi::startBlockingComputation(GameBoard *board, bool isXTurn)
 }
 
 void PerfectAi::cancelComputation()
+{
+    __cancelComputation();
+}
+
+void PerfectAi::__cancelComputation()
 {
     m_cancel = true;
     m_computationFuture.waitForFinished();

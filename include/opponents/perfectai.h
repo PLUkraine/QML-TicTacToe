@@ -6,12 +6,13 @@
 #include <tuple>
 #include <QAtomicInt>
 
+#include "igameopponent.h"
 #include "include/gameboard.h"
 #include "include/gamestatealgorithm.h"
 
 typedef std::tuple<int, int, int> ScoreIndexDepth;
 
-class PerfectAi : public QObject
+class PerfectAi : public IGameOpponent
 {
     Q_OBJECT
 private:
@@ -21,16 +22,14 @@ private:
 
 public:
     PerfectAi(QObject *parent=nullptr);
-    ~PerfectAi();
+    ~PerfectAi() override;
 
-    void startComputation(GameBoard *board, bool isXTurn);
     int startBlockingComputation(GameBoard *board, bool isXTurn);
-    void cancelComputation();
-
-signals:
-    void computationEnded(int resultIndex);
+    void startComputation(GameBoard *board, bool isXTurn) override;
+    void cancelComputation() override;
 
 private:
+    void __cancelComputation();
     int threadFunction(GameBoard *board, bool isXTurn);
     ScoreIndexDepth minMax(GameBoard *board, CellStateEnum::EnCellState cell, bool isAiTurn, int depth);
     ScoreIndexDepth getCandidate(GameBoard *board, CellStateEnum::EnCellState cell,

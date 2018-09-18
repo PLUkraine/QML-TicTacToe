@@ -5,7 +5,7 @@
 
 #include "gameboard.h"
 #include "gamestatealgorithm.h"
-#include "opponents/perfectai.h"
+#include "opponents/igameopponent.h"
 
 class GameModel : public QObject {
     Q_OBJECT
@@ -13,8 +13,7 @@ class GameModel : public QObject {
 private:
     GameStateAlgorithm m_stateAlgo;
     GameBoard m_board;
-    // TODO replace with OPPONENT
-    QPointer<PerfectAi> m_ai;
+    QPointer<IGameOpponent> m_ai;
 
     bool m_playerXTurn;
     bool m_canPlayerMove;
