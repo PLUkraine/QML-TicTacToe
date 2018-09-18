@@ -1,6 +1,8 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
+#include <QPointer>
+
 #include "gameboard.h"
 #include "gamestatealgorithm.h"
 #include "perfectai.h"
@@ -12,7 +14,7 @@ private:
     GameStateAlgorithm m_stateAlgo;
     GameBoard m_board;
     // TODO replace with OPPONENT
-    std::unique_ptr<PerfectAi> m_ai;
+    QPointer<PerfectAi> m_ai;
 
     bool m_playerXTurn;
     bool m_isActive;
@@ -35,10 +37,15 @@ signals:
     void playerChanged(bool isXPlayer);
 
 private:
+    void setAi();
+
     void flipPlayer();
     void resetPlayer();
     void setCell(int index);
     void computeState(int changedIndex);
+
+private slots:
+    void onComputationEnded(int index);
 };
 
 #endif // GAMEMODEL_H

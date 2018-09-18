@@ -10,6 +10,11 @@ PerfectAi::PerfectAi(QObject *parent)
 {
 }
 
+PerfectAi::~PerfectAi()
+{
+    cancelComputation();
+}
+
 void PerfectAi::startComputation(GameBoard *board, bool isXTurn)
 {
     m_cancel = false;
@@ -19,9 +24,8 @@ void PerfectAi::startComputation(GameBoard *board, bool isXTurn)
 int PerfectAi::startBlockingComputation(GameBoard *board, bool isXTurn)
 {
     m_cancel = false;
-    m_computationFuture = QtConcurrent::run(this, &PerfectAi::threadFunction, board, isXTurn);
-    m_computationFuture.waitForFinished();
-    return m_computationFuture.result();
+    int result = threadFunction(board, isXTurn);
+    return result;
 }
 
 void PerfectAi::cancelComputation()
@@ -34,7 +38,12 @@ int PerfectAi::threadFunction(GameBoard *board, bool isXTurn)
 {
     ScoreIndexDepth result = minMax(board, isXTurn ? CellStateEnum::X :CellStateEnum::O, true, 0);
     qDebug() << "Score" << get<0>(result) << "Index" << get<1>(result) << "Depth" << get<2>(result);
-    return get<1>(result);
+
+    int answer = get<1>(result);
+    if (!m_cancel) {
+        emit computationEnded(answer);
+    }
+    return answer;
 }
 
 ScoreIndexDepth PerfectAi::minMax(GameBoard *board, CellStateEnum::EnCellState cell, bool isAiTurn, int depth)

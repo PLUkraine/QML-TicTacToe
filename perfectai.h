@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QFuture>
 #include <tuple>
+#include <QAtomicInt>
 
 #include "include/gameboard.h"
 #include "include/gamestatealgorithm.h"
@@ -16,10 +17,11 @@ class PerfectAi : public QObject
 private:
     GameStateAlgorithm m_algo;
     QFuture<int> m_computationFuture;
-    bool m_cancel;
+    QAtomicInt m_cancel;
 
 public:
     PerfectAi(QObject *parent=nullptr);
+    ~PerfectAi();
 
     void startComputation(GameBoard *board, bool isXTurn);
     int startBlockingComputation(GameBoard *board, bool isXTurn);

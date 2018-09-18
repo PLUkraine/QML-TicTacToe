@@ -4,14 +4,15 @@
 
 
 GameModel::GameModel(QObject *parent)
-    : QObject(parent),
-      m_ai(new PerfectAi(this))
+    : QObject(parent)
 {
+    this->setAi();
     m_isActive = false;
 }
 
 void GameModel::startNewGame(int rows, int cols, int cellsToWin)
 {
+    m_ai->cancelComputation();
     m_isActive = true;
     m_board.newGame(rows, cols, cellsToWin);
     resetPlayer();
@@ -30,10 +31,8 @@ void GameModel::makePlayerMove(int index)
 
     if (!m_isActive) return;
 
-    int ai_index = m_ai->startBlockingComputation(&m_board, isXTurn());
-    setCell(ai_index);
-    flipPlayer();
-    computeState(ai_index);
+    m_isActive = false;
+    m_ai->startComputation(&m_board, isXTurn());
 }
 
 bool GameModel::isXTurn() const
@@ -83,4 +82,24 @@ int GameModel::getIndex(int row, int col) const
 {
     return m_board.getIndex(row, col);
 }
+
+void GameModel::setAi()
+{
+    if (m_ai) {
+        m_ai->cancelComputation();
+        m_ai->deleteLater();
+    }
+
+    m_ai = new PerfectAi(this);
+    connect(m_ai, &PerfectAi::computationEnded, this, &GameModel::onComputationEnded);
+}
+
+void GameModel::onComputationEnded(int index)
+{
+    m_isActive = true;
+    setCell(index);
+    flipPlayer();
+    computeState(index);
+}
+
 
