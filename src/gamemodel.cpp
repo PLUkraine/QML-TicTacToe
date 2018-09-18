@@ -7,20 +7,24 @@ GameModel::GameModel(QObject *parent)
     : QObject(parent)
 {
     this->setAi();
-    m_isActive = false;
+    m_canPlayerMove = false;
+    m_isGameActive = false;
 }
 
 void GameModel::startNewGame(int rows, int cols, int cellsToWin)
 {
+    m_isGameActive = true;
+    m_canPlayerMove = true;
+
     m_ai->cancelComputation();
-    m_isActive = true;
     m_board.newGame(rows, cols, cellsToWin);
     resetPlayer();
 }
 
 void GameModel::makePlayerMove(int index)
 {
-    if (!m_isActive) {
+    assert(m_isGameActive);
+    if (!m_canPlayerMove) {
         qWarning() << "Trying to move player when model is not active!";
         return;
     }
@@ -29,15 +33,15 @@ void GameModel::makePlayerMove(int index)
     flipPlayer();
     computeState(index);
 
-    if (!m_isActive) return;
+    if (!m_canPlayerMove) return;
 
-    m_isActive = false;
+    m_canPlayerMove = false;
     m_ai->startComputation(&m_board, isXTurn());
 }
 
 bool GameModel::isXTurn() const
 {
-    assert(m_isActive);
+    assert(m_isGameActive);
     return m_playerXTurn;
 }
 
@@ -68,7 +72,8 @@ void GameModel::computeState(int changedIndex)
 {
     auto answer = m_stateAlgo.getState(&m_board, changedIndex);
     if (answer != GameStateClass::STATE_NOTHING) {
-        m_isActive = false;
+        m_canPlayerMove = false;
+        m_isGameActive = false;
         emit gameIsOver(answer);
     }
 }
@@ -96,7 +101,7 @@ void GameModel::setAi()
 
 void GameModel::onComputationEnded(int index)
 {
-    m_isActive = true;
+    m_canPlayerMove = true;
     setCell(index);
     flipPlayer();
     computeState(index);

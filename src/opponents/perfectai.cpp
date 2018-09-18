@@ -1,4 +1,4 @@
-#include "perfectai.h"
+#include "opponents/perfectai.h"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QDebug>
 
@@ -37,7 +37,7 @@ void PerfectAi::cancelComputation()
 int PerfectAi::threadFunction(GameBoard *board, bool isXTurn)
 {
     ScoreIndexDepth result = minMax(board, isXTurn ? CellStateEnum::X :CellStateEnum::O, true, 0);
-    qDebug() << "Score" << get<0>(result) << "Index" << get<1>(result) << "Depth" << get<2>(result);
+    //    qDebug() << "Score" << get<0>(result) << "Index" << get<1>(result) << "Depth" << get<2>(result);
 
     int answer = get<1>(result);
     if (!m_cancel) {
@@ -77,7 +77,9 @@ ScoreIndexDepth PerfectAi::getCandidate(GameBoard *board, CellStateEnum::EnCellS
     case GameStateClass::STATE_O_WIN:
         return {isAiTurn ? 10 : -10, curIndex, depth};
     case GameStateClass::STATE_NOTHING:
-        return minMax(board, m_algo.changePlayer(cell), !isAiTurn, depth+1);
+        return depth > 4
+                ? std::make_tuple(0, curIndex, depth)
+                : minMax(board, m_algo.changePlayer(cell), !isAiTurn, depth+1);
     }
     exit(1);
 }

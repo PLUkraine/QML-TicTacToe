@@ -5,7 +5,7 @@
 
 #include "gameboard.h"
 #include "gamestatealgorithm.h"
-#include "perfectai.h"
+#include "opponents/perfectai.h"
 
 class GameModel : public QObject {
     Q_OBJECT
@@ -17,6 +17,7 @@ private:
     QPointer<PerfectAi> m_ai;
 
     bool m_playerXTurn;
+    bool m_canPlayerMove;
     bool m_isActive;
 
 public:
