@@ -53,17 +53,17 @@ int PerfectAi::threadFunction(GameBoard *board, bool isXTurn)
 
 ScoreIndexDepth PerfectAi::minMax(GameBoard *board, CellStateEnum::EnCellState cell, bool isAiTurn, int depth)
 {
-    ScoreIndexDepth answer = {isAiTurn ? -1e9 : 1e9, -1, -1};
+    ScoreIndexDepth answer = std::make_tuple(isAiTurn ? -1e9 : 1e9, -1, -1);
 
     for (int i=0; i<board->getIndexCount(); ++i) {
-        if (m_cancel) return {0, -1, -1};
+        if (m_cancel) return std::make_tuple(0, -1, -1);
         if (board->getCell(i) != CellStateEnum::EMPTY) continue;
 
         board->setCell(i, cell);
 
         ScoreIndexDepth candidate = getCandidate(board, cell, m_algo.getState(board, i), isAiTurn, i, depth);
         if (isCandidateBetter(answer, candidate, isAiTurn)) {
-            answer = {get<0>(candidate), i, get<2>(candidate)};
+            answer = std::make_tuple(get<0>(candidate), i, get<2>(candidate));
         }
 
         board->setCell(i, CellStateEnum::EMPTY);
@@ -77,10 +77,10 @@ ScoreIndexDepth PerfectAi::getCandidate(GameBoard *board, CellStateEnum::EnCellS
 {
     switch (curState) {
     case GameStateClass::STATE_DRAW:
-        return {0, curIndex, depth};
+        return std::make_tuple(0, curIndex, depth);
     case GameStateClass::STATE_X_WIN:
     case GameStateClass::STATE_O_WIN:
-        return {isAiTurn ? 10 : -10, curIndex, depth};
+        return std::make_tuple(isAiTurn ? 10 : -10, curIndex, depth);
     case GameStateClass::STATE_NOTHING:
         return depth > 4
                 ? std::make_tuple(0, curIndex, depth)
