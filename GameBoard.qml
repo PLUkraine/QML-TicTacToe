@@ -35,9 +35,9 @@ Item {
     }
 
     Component.onCompleted: {
-        var rows = 5;
-        var cols = 5;
-        var cellsToWin = 4;
+        var rows = 3;
+        var cols = 3;
+        var cellsToWin = 3;
 
         ViewHelper.initialize(root, gameController, 40);
         ViewHelper.newGame(root, gameController, rows, cols, cellsToWin, GameOpponent.NONE);

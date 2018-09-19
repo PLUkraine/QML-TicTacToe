@@ -12,7 +12,7 @@ PerfectAi::PerfectAi(QObject *parent)
 
 PerfectAi::~PerfectAi()
 {
-    __cancelComputation();
+    PerfectAi::cancelComputation();
 }
 
 void PerfectAi::startComputation(GameBoard *board, bool isXTurn)
@@ -29,11 +29,6 @@ int PerfectAi::startBlockingComputation(GameBoard *board, bool isXTurn)
 }
 
 void PerfectAi::cancelComputation()
-{
-    __cancelComputation();
-}
-
-void PerfectAi::__cancelComputation()
 {
     m_cancel = true;
     m_computationFuture.waitForFinished();

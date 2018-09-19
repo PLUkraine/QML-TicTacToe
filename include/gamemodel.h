@@ -5,6 +5,7 @@
 
 #include "gameboard.h"
 #include "gamestatealgorithm.h"
+#include "enums/gameopponentenum.h"
 #include "opponents/igameopponent.h"
 
 class GameModel : public QObject {
@@ -23,7 +24,7 @@ public:
     GameModel(QObject *parent = nullptr);
 
     // methods
-    void startNewGame(int rows, int cols, int cellsToWin);
+    void startNewGame(int rows, int cols, int cellsToWin, GameOpponentEnum::EnGameOpponent opponent);
     void makePlayerMove(int index);
 
     // getters
@@ -37,7 +38,7 @@ signals:
     void playerChanged(bool isXPlayer);
 
 private:
-    void setAi();
+    void setAi(bool value);
 
     void flipPlayer();
     void resetPlayer();

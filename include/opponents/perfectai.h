@@ -29,7 +29,6 @@ public:
     void cancelComputation() override;
 
 private:
-    void __cancelComputation();
     int threadFunction(GameBoard *board, bool isXTurn);
     ScoreIndexDepth minMax(GameBoard *board, CellStateEnum::EnCellState cell, bool isAiTurn, int depth);
     ScoreIndexDepth getCandidate(GameBoard *board, CellStateEnum::EnCellState cell,

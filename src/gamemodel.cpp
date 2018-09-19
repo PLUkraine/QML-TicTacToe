@@ -9,17 +9,17 @@
 GameModel::GameModel(QObject *parent)
     : QObject(parent)
 {
-    this->setAi();
+    this->setAi(false);
     m_canPlayerMove = false;
     m_isGameActive = false;
 }
 
-void GameModel::startNewGame(int rows, int cols, int cellsToWin)
+void GameModel::startNewGame(int rows, int cols, int cellsToWin, GameOpponentEnum::EnGameOpponent opponent)
 {
     m_isGameActive = true;
     m_canPlayerMove = true;
 
-    m_ai->cancelComputation();
+    setAi(opponent == GameOpponentEnum::CPU);
     m_board.newGame(rows, cols, cellsToWin);
     resetPlayer();
 }
@@ -36,8 +36,7 @@ void GameModel::makePlayerMove(int index)
     flipPlayer();
     computeState(index);
 
-    if (!m_canPlayerMove) return;
-
+    if (!m_isGameActive || m_ai.isNull()) return;
     m_canPlayerMove = false;
     m_ai->startComputation(&m_board, isXTurn());
 }
@@ -91,15 +90,18 @@ int GameModel::getIndex(int row, int col) const
     return m_board.getIndex(row, col);
 }
 
-void GameModel::setAi()
+void GameModel::setAi(bool value)
 {
-    if (m_ai) {
+    if ((!value && m_ai.isNull()) || (value && !m_ai.isNull())) return;
+
+    if (value) {
+        m_ai = new PerfectAi(this);
+        connect(m_ai, &IGameOpponent::computationEnded, this, &GameModel::onComputationEnded);
+    } else {
         m_ai->cancelComputation();
         m_ai->deleteLater();
+        m_ai = nullptr;
     }
-
-    m_ai = new PerfectAi(this);
-    connect(m_ai, &IGameOpponent::computationEnded, this, &GameModel::onComputationEnded);
 }
 
 void GameModel::onComputationEnded(int index)

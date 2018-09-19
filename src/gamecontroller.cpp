@@ -24,7 +24,7 @@ bool GameController::isXTurn() const
 
 void GameController::newGame(int rows, int cols, int cellsToWin, int gameOpponent)
 {
-    m_model->startNewGame(rows, cols, cellsToWin);
+    m_model->startNewGame(rows, cols, cellsToWin, static_cast<GameOpponentEnum::EnGameOpponent>(gameOpponent));
     m_navigator.resetDimensions(rows, cols);
 }
 
